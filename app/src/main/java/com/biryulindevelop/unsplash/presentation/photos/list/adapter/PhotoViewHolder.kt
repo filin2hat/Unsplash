@@ -11,20 +11,20 @@ class PhotoViewHolder(private val binding: PhotoViewHolderBinding) :
 
     fun bind(item: Photo, onClick: (ClickableView, item: Photo) -> Unit) {
 
-        binding.photo.setOnClickListener {
+        binding.photoImgView.setOnClickListener {
             onClick(ClickableView.PHOTO, item)
         }
-        binding.isLiked.setOnClickListener {
+        binding.isLikedButton.setOnClickListener {
             onClick(ClickableView.LIKE, item)
         }
 
-        binding.currentLikes.text = item.likes.toString()
-        binding.isLiked.isSelected = item.likedByUser
+        binding.currentLikesTextView.text = item.likes.toString()
+        binding.isLikedButton.isSelected = item.likedByUser
 
-        binding.photo.loadImage(item.urlsSmall)
-        binding.authorAvatar.loadImage(item.userAvatar)
+        binding.photoImgView.loadImage(item.urlsSmall)
+        binding.authorAvatarImgView.loadImage(item.userAvatar)
 
-        binding.authorName.text = item.userName
+        binding.authorNameTextView.text = item.userName
     }
 }
 

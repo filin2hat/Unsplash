@@ -60,7 +60,7 @@
         android:layout_height="50dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/green"
+        android:backgroundTint="@color/unsplash_green"
         android:text="@string/go_straight_to_authorization"
         android:textColor="@color/black"
         android:textSize="16sp"

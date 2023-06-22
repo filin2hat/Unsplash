@@ -7,7 +7,7 @@
     tools:context=".presentation.collections.DigestFragment">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/topAppBar"
+        android:id="@+id/top_app_bar_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -15,10 +15,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/search_bar"
+            android:id="@+id/search_bar_view"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/green"
+            android:background="@color/unsplash_green"
             app:title="@string/title_collections" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -31,7 +31,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topAppBar">
+        app:layout_constraintTop_toBottomOf="@id/top_app_bar_view">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/digestRecycler"
@@ -44,7 +44,7 @@
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <ProgressBar
-        android:id="@+id/recycler_progress_bar"
+        android:id="@+id/recycler_progress_bar_view"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginBottom="40dp"
@@ -53,10 +53,10 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <FrameLayout
-        android:id="@+id/error"
+        android:id="@+id/error_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black_100"
+        android:background="@color/transparent_black"
         android:paddingHorizontal="45dp"
         android:paddingVertical="5dp"
         android:visibility="invisible"
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|center_vertical"
             android:src="@drawable/ic_wifi_off"
-            app:tint="@color/error_text" />
+            app:tint="@color/error_red" />
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

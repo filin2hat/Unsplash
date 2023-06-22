@@ -14,21 +14,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topAppBar">
+        app:layout_constraintTop_toBottomOf="@id/top_app_bar_view">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/photoRecycler"
+            android:id="@+id/photo_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-            app:spanCount="2" />
-
-
+            app:spanCount="2"
+            tools:listitem="@layout/photo_view_holder" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/topAppBar"
+        android:id="@+id/top_app_bar_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,17 +35,17 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/search_bar"
+            android:id="@+id/search_bar_view"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/green"
+            android:background="@color/unsplash_green"
             app:menu="@menu/search_menu"
             app:title="@string/title_photos" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ProgressBar
-        android:id="@+id/recycler_progress_bar"
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/recycler_progress_bar_view"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginBottom="40dp"
@@ -55,10 +54,10 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <FrameLayout
-        android:id="@+id/error"
+        android:id="@+id/error_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black_100"
+        android:background="@color/transparent_black"
         android:paddingHorizontal="45dp"
         android:paddingVertical="5dp"
         android:visibility="invisible"
@@ -66,19 +65,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="@string/no_connection"
             android:textColor="#F63F3F" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|center_vertical"
             android:src="@drawable/ic_wifi_off"
-            app:tint="@color/error_text" />
+            app:tint="@color/error_red" />
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

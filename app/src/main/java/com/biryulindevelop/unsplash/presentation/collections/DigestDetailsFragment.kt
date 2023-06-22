@@ -65,7 +65,7 @@ class DigestDetailsFragment : BaseFragment<FragmentDigestDetailsBinding>() {
 
     private fun updateUiOnServerResponse(loadState: LoadState) {
         if (loadState == LoadState.ERROR) {
-            binding.error.isVisible = true
+            binding.errorView.isVisible = true
         }
         if (loadState == LoadState.SUCCESS) {
             viewLifecycleOwner.lifecycleScope
@@ -86,7 +86,7 @@ class DigestDetailsFragment : BaseFragment<FragmentDigestDetailsBinding>() {
                 binding.collapsingToolbarLayout.title = state.data.title
                 binding.digestTitle.text = state.data.title
                 binding.description.text = state.data.description
-                binding.tags.text = state.data.tags.joinToString { tag ->
+                binding.tagsTextView.text = state.data.tags.joinToString { tag ->
                     "#${tag.title}"
                 }
                 binding.data.text =
@@ -115,15 +115,15 @@ class DigestDetailsFragment : BaseFragment<FragmentDigestDetailsBinding>() {
     }
 
     private fun settingAdapter() {
-        binding.photoRecycler.adapter = adapter
-        binding.photoRecycler.itemAnimator?.changeDuration = 0
+        binding.photoRecyclerView.adapter = adapter
+        binding.photoRecyclerView.itemAnimator?.changeDuration = 0
     }
 
     private fun loadStateItemsObserve() {
         adapter.addLoadStateListener { loadState ->
-            binding.error.isVisible =
+            binding.errorView.isVisible =
                 loadState.mediator?.refresh is androidx.paging.LoadState.Error
-            binding.recyclerProgressBar.isVisible =
+            binding.recyclerProgressBarView.isVisible =
                 loadState.mediator?.refresh is androidx.paging.LoadState.Loading
         }
     }
@@ -131,7 +131,7 @@ class DigestDetailsFragment : BaseFragment<FragmentDigestDetailsBinding>() {
     private fun loadStateLike() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.loadState.collect { loadStateLike ->
-                binding.error.isVisible =
+                binding.errorView.isVisible =
                     loadStateLike == LoadState.ERROR
             }
         }
@@ -139,7 +139,7 @@ class DigestDetailsFragment : BaseFragment<FragmentDigestDetailsBinding>() {
 
     private fun initRefresher() {
         binding.swipeRefresh.setOnRefreshListener {
-            binding.photoRecycler.isVisible = true
+            binding.photoRecyclerView.isVisible = true
             adapter.refresh()
             binding.swipeRefresh.isRefreshing = false
         }

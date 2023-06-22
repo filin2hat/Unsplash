@@ -7,14 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".presentation.photos.details.OnePhotoDetailsFragment">
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top|start"
         android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/topAppBar"
+            android:id="@+id/top_app_bar_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -22,27 +22,27 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/shareBar"
+                android:id="@+id/share_bar_view"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/green"
+                android:background="@color/unsplash_green"
                 app:menu="@menu/share_menu"
                 app:title="@string/one_photo_fragment_title" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
         <ScrollView
-            android:id="@+id/scroll"
+            android:id="@+id/scroll_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/photo"
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/photo_img_view"
                     android:layout_width="match_parent"
                     android:layout_height="343dp"
                     android:layout_gravity="center"
@@ -50,7 +50,7 @@
                     android:contentDescription="@string/content_description"
                     tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-                <LinearLayout
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|start"
@@ -58,7 +58,7 @@
                     android:orientation="horizontal">
 
                     <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/authorAvatar"
+                        android:id="@+id/author_avatar_img_view"
                         android:layout_width="37dp"
                         android:layout_height="37dp"
                         android:layout_gravity="center"
@@ -66,98 +66,105 @@
                         android:src="@drawable/ic_launcher_foreground"
                         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
 
-                    <LinearLayout
+                    <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|start"
                         android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/authorName"
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/author_name_text_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="top"
                             android:layout_marginStart="10dp"
                             android:textColor="@color/white"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            tools:text="author name" />
 
-                        <TextView
-                            android:id="@+id/authorAccount"
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/author_account_text_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:textColor="@color/white"
-                            android:textSize="14sp" />
-                    </LinearLayout>
+                            android:textSize="14sp"
+                            tools:text="author account" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
 
-                    <androidx.legacy.widget.Space
-                        android:id="@+id/space"
+                    <Space
+                        android:id="@+id/space_view"
                         android:layout_width="0dp"
                         android:layout_height="49dp"
                         android:layout_weight="1" />
 
-                    <TextView
-                        android:id="@+id/currentLikes"
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/current_likes_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginEnd="10dp"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        tools:text="99" />
 
-                    <ImageButton
-                        android:id="@+id/isLiked"
-                        android:layout_width="14dp"
-                        android:layout_height="13dp"
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/is_liked_button_view"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_gravity="center"
                         android:layout_marginEnd="10dp"
                         android:backgroundTint="#00FFFFFF"
-                        app:srcCompat="@drawable/like_selector" />
+                        app:srcCompat="@drawable/like_selector"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-                </LinearLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-                <LinearLayout
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp">
 
-                    <ImageView
-                        android:id="@+id/location_button"
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/location_view"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:focusable="true"
                         app:srcCompat="@drawable/ic_outline_location_on_24" />
 
-                    <TextView
-                        android:id="@+id/location"
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/location_text_view"
                         android:layout_width="362dp"
                         android:layout_height="match_parent"
-                        android:textSize="16sp" />
-                </LinearLayout>
+                        android:textSize="16sp"
+                        tools:text="Location" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-                <TextView
-                    android:id="@+id/tags"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tags_text_view"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:layout_gravity="top|center"
                     android:layout_margin="8dp"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    tools:text="#tags" />
 
-                <LinearLayout
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="115dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/exif"
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/exif_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginStart="12dp"
                         android:lineSpacingExtra="2sp"
-                        android:textAlignment="textStart" />
+                        android:textAlignment="textStart"
+                        tools:text="exif" />
 
                     <androidx.legacy.widget.Space
-                        android:id="@+id/space2"
+                        android:id="@+id/space_2"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_weight="1" />
@@ -166,45 +173,48 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
 
-                        <TextView
-                            android:id="@+id/about_author"
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/about_author_text_view"
                             android:layout_width="140dp"
                             android:layout_height="match_parent"
                             android:layout_marginEnd="12dp"
                             android:lineSpacingExtra="2sp"
-                            android:textAlignment="textStart" />
+                            android:textAlignment="textStart"
+                            tools:text="about" />
                     </androidx.core.widget.NestedScrollView>
-                </LinearLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-                <LinearLayout
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="204dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_marginEnd="32dp">
 
-                    <TextView
-                        android:id="@+id/downloadsCount"
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/downloads_count_text_view"
                         android:layout_width="174dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
-                        android:textAlignment="textEnd" />
+                        android:textAlignment="textEnd"
+                        tools:text="55" />
 
-                    <ImageButton
-                        android:id="@+id/downloadButton"
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/download_button"
                         android:layout_width="18dp"
                         android:layout_height="24dp"
                         android:layout_gravity="bottom|start"
                         android:backgroundTint="#00FFFFFF"
-                        app:srcCompat="@drawable/download_line" />
-                </LinearLayout>
-            </LinearLayout>
+                        app:srcCompat="@drawable/download_line"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
         </ScrollView>
 
         <FrameLayout
-            android:id="@+id/error"
+            android:id="@+id/error_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/black_100"
+            android:background="@color/transparent_black"
             android:paddingHorizontal="45dp"
             android:paddingVertical="5dp"
             android:visibility="invisible"
@@ -212,19 +222,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:text="@string/no_connection"
                 android:textColor="#F63F3F" />
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center_vertical"
                 android:src="@drawable/ic_wifi_off"
-                app:tint="@color/error_text" />
+                app:tint="@color/error_red" />
         </FrameLayout>
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Unsplash</string>
     <string name="go_straight_to_authorization">Пропустить</string>
     <string-array name="onboarding_texts_array">
         <item>Создавайте снимки, публикуйте, собирайте аудиторию, получайте фидбек!</item>
@@ -21,7 +20,7 @@
     <string name="alert_text">
         Необходимо разрешение, чтобы сохранить фотографию на устройстве
     </string>
-    <string name="search_hint">Найти фото...</string>
+    <string name="search_hint">Найти фото…</string>
     <string name="no_connection">Проверьте состояние сети</string>
     <string name="logout">Выйти</string>
     <string name="download_finished">Загрузка завершена</string>

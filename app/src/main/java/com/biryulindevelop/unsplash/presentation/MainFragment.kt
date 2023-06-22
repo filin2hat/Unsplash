@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.navigation.fragment.findNavController
+import com.biryulindevelop.unsplash.R
 import com.biryulindevelop.unsplash.data.api.ONBOARDING_IS_SHOWN
 import com.biryulindevelop.unsplash.data.api.TOKEN_ENABLED_KEY
 import com.biryulindevelop.unsplash.data.api.TOKEN_SHARED_NAME

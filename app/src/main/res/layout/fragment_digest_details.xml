@@ -60,10 +60,10 @@
                     app:layout_constraintBottom_toTopOf="@id/data"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tags" />
+                    app:layout_constraintTop_toBottomOf="@id/tags_text_view" />
 
                 <TextView
-                    android:id="@+id/tags"
+                    android:id="@+id/tags_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -118,7 +118,7 @@
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/photoRecycler"
+            android:id="@+id/photo_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -128,7 +128,7 @@
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <ProgressBar
-        android:id="@+id/recycler_progress_bar"
+        android:id="@+id/recycler_progress_bar_view"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="center|bottom"
@@ -136,11 +136,11 @@
         android:visibility="gone" />
 
     <FrameLayout
-        android:id="@+id/error"
+        android:id="@+id/error_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center|bottom"
-        android:background="@color/black_100"
+        android:background="@color/transparent_black"
         android:paddingHorizontal="45dp"
         android:paddingVertical="5dp"
         android:visibility="invisible">
@@ -157,6 +157,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|center_vertical"
             android:src="@drawable/ic_wifi_off"
-            app:tint="@color/error_text" />
+            app:tint="@color/error_red" />
     </FrameLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

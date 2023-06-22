@@ -37,7 +37,7 @@
         <item quantity="other">%1$d photos by %2$s</item>
     </plurals>
     <string name="content_description">image</string>
-    <string name="user_email" translatable="false">example@gmail.com</string>
+    <string name="user_email" translatable="false">user@mail.com</string>
     <string name="user_total_likes">Images you liked: %1$d</string>
     <string name="logout_title">Are you sure you want to logout?</string>
     <string name="logout_message">All local data will be deleted.</string>

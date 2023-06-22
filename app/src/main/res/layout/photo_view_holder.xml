@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/photo"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/photo_img_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -14,7 +14,7 @@
         android:scaleType="center"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|start"
@@ -23,16 +23,16 @@
         android:orientation="horizontal">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/authorAvatar"
-            android:layout_width="17dp"
-            android:layout_height="17dp"
+            android:id="@+id/author_avatar_img_view"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_gravity="center"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="@dimen/common_spacing_medium"
             android:src="@drawable/ic_launcher_foreground"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
 
-        <TextView
-            android:id="@+id/authorName"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/author_name_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -44,13 +44,13 @@
             android:textSize="11sp" />
 
         <androidx.legacy.widget.Space
-            android:id="@+id/space"
+            android:id="@+id/space_view"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
-        <TextView
-            android:id="@+id/currentLikes"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/current_likes_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -58,15 +58,16 @@
             android:textColor="@color/white"
             android:textSize="13sp" />
 
-        <ImageButton
-            android:id="@+id/isLiked"
-            android:layout_width="14dp"
-            android:layout_height="13dp"
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/is_liked_button"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_gravity="center"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="@dimen/common_spacing_medium"
             android:backgroundTint="#00FFFFFF"
             android:focusable="true"
-            app:srcCompat="@drawable/like_selector" />
+            app:srcCompat="@drawable/like_selector"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </FrameLayout>

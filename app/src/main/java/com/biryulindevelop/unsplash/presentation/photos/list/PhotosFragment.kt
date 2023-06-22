@@ -59,23 +59,23 @@ class PhotosFragment : BaseFragment<FragmentPhotosBinding>() {
     }
 
     private fun setSearchView() {
-        val searchView = binding.searchBar.menu.getItem(0).actionView as SearchView
+        val searchView = binding.searchBarView.menu.getItem(0).actionView as SearchView
         searchView.setChangeTextListener { query ->
             viewModel.setQuery(query) { adapter.refresh() }
         }
     }
 
     private fun settingAdapter() {
-        binding.photoRecycler.adapter = adapter
-        binding.photoRecycler.itemAnimator?.changeDuration = 0
+        binding.photoRecyclerView.adapter = adapter
+        binding.photoRecyclerView.itemAnimator?.changeDuration = 0
     }
 
     private fun loadStateItemsObserve() {
         viewLifecycleOwner.lifecycleScope.launch {
             adapter.loadStateFlow.collect { loadState ->
-                binding.error.isVisible =
+                binding.errorView.isVisible =
                     loadState.mediator?.refresh is androidx.paging.LoadState.Error
-                binding.recyclerProgressBar.isVisible =
+                binding.recyclerProgressBarView.isVisible =
                     loadState.mediator?.refresh is androidx.paging.LoadState.Loading
             }
         }
@@ -84,14 +84,14 @@ class PhotosFragment : BaseFragment<FragmentPhotosBinding>() {
     private fun loadStateLike() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.loadState.collect { loadStateLike ->
-                binding.error.isVisible = loadStateLike == LoadState.ERROR
+                binding.errorView.isVisible = loadStateLike == LoadState.ERROR
             }
         }
     }
 
     private fun initRefresher() {
         binding.swipeRefresh.setOnRefreshListener {
-            binding.photoRecycler.isVisible = true
+            binding.photoRecyclerView.isVisible = true
             adapter.refresh()
             binding.swipeRefresh.isRefreshing = false
         }

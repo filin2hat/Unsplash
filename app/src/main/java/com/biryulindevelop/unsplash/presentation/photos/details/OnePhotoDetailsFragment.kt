@@ -1,6 +1,7 @@
 package com.biryulindevelop.unsplash.presentation.photos.details
 
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+import android.annotation.SuppressLint
 import android.app.DownloadManager
 import android.content.BroadcastReceiver
 import android.content.ContentValues.TAG
@@ -42,9 +43,11 @@ class OnePhotoDetailsFragment : BaseFragment<FragmentOnePhotoDetailsBinding>() {
         FragmentOnePhotoDetailsBinding.inflate(inflater)
 
     private val viewModel: OnePhotoDetailsViewModel by viewModels()
+
     private val args by navArgs<OnePhotoDetailsFragmentArgs>()
 
     private var lat: Double? = null
+
     private var lon: Double? = null
 
     private val downloadManager by lazy {
@@ -52,6 +55,7 @@ class OnePhotoDetailsFragment : BaseFragment<FragmentOnePhotoDetailsBinding>() {
     }
 
     private lateinit var receiver: BroadcastReceiver
+
     private var enableDownloadFlag = false
 
     private val launcher = registerForActivityResult(
@@ -109,8 +113,8 @@ class OnePhotoDetailsFragment : BaseFragment<FragmentOnePhotoDetailsBinding>() {
 
     private fun updateUiOnServerResponse(loadState: LoadState) {
         if (loadState == LoadState.ERROR) {
-            binding.error.isVisible = true
-            binding.scroll.isVisible = false
+            binding.errorView.isVisible = true
+            binding.scrollView.isVisible = false
         }
         if (loadState == LoadState.SUCCESS) updateUi()
     }
@@ -133,28 +137,29 @@ class OnePhotoDetailsFragment : BaseFragment<FragmentOnePhotoDetailsBinding>() {
         }
     }
 
+    @SuppressLint("StringFormatMatches")
     private fun bindUploadedTexts(state: DetailsState.Success) {
-        binding.authorName.text = state.data.user.name
-        binding.authorAccount.text = getString(R.string.author_account, state.data.user.username)
+        binding.authorNameTextView.text = state.data.user.name
+        binding.authorAccountTextView.text = getString(R.string.author_account, state.data.user.username)
 
-        binding.location.text = state.data.location.city ?: "N/A"
-        binding.currentLikes.text = state.data.likes.toString()
-        binding.isLiked.isSelected = state.data.likedByUser
+        binding.locationTextView.text = state.data.location.city ?: "N/A"
+        binding.currentLikesTextView.text = state.data.likes.toString()
+        binding.isLikedButtonView.isSelected = state.data.likedByUser
 
-        binding.tags.text = state.data.tags.joinToString { tag ->
+        binding.tagsTextView.text = state.data.tags.joinToString { tag ->
             "#${tag.title ?: "N/A"}"
         }
-        binding.exif.text = buildExifText(state)
-        binding.aboutAuthor.text = getString(
+        binding.exifTextView.text = buildExifText(state)
+        binding.aboutAuthorTextView.text = getString(
             R.string.about, state.data.user.username, state.data.user.bio ?: "N/A"
         )
-        binding.downloadsCount.text =
+        binding.downloadsCountTextView.text =
             getString(R.string.download, state.data.downloads, state.data.downloads)
     }
 
     private fun bindUploadedImages(state: DetailsState.Success) {
-        binding.photo.loadImage(state.data.urls.regular)
-        binding.authorAvatar.loadImage(state.data.user.profileImage.small)
+        binding.photoImgView.loadImage(state.data.urls.regular)
+        binding.authorAvatarImgView.loadImage(state.data.user.profileImage.small)
     }
 
     private fun setUploadedLocation(state: DetailsState.Success) {
@@ -166,7 +171,7 @@ class OnePhotoDetailsFragment : BaseFragment<FragmentOnePhotoDetailsBinding>() {
 
     private fun setLocationClick() {
 
-        binding.locationButton.setOnClickListener {
+        binding.locationView.setOnClickListener {
             Log.d(TAG, "lat $lat\nlon $lon ")
             if (lat != null && lon != null) {
                 if (lat != 0.0 && lon != 0.0) {
@@ -183,7 +188,7 @@ class OnePhotoDetailsFragment : BaseFragment<FragmentOnePhotoDetailsBinding>() {
     private fun loadStateLike() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.loadState.collect { loadStateLike ->
-                binding.error.isVisible =
+                binding.errorView.isVisible =
                     loadStateLike == LoadState.ERROR
             }
         }
@@ -208,7 +213,7 @@ class OnePhotoDetailsFragment : BaseFragment<FragmentOnePhotoDetailsBinding>() {
             getString(R.string.download_finished),
             Snackbar.LENGTH_INDEFINITE
         )
-        mySnackbar.setAction(R.string.open, View.OnClickListener {
+        mySnackbar.setAction(R.string.open) {
             val openIntent = Intent().apply {
                 action = Intent.ACTION_VIEW
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK
@@ -216,7 +221,7 @@ class OnePhotoDetailsFragment : BaseFragment<FragmentOnePhotoDetailsBinding>() {
             }
             openIntent.setDataAndType(uri, "image/jpg")
             startActivity(openIntent)
-        })
+        }
         mySnackbar.show()
     }
 
@@ -229,7 +234,7 @@ class OnePhotoDetailsFragment : BaseFragment<FragmentOnePhotoDetailsBinding>() {
     }
 
     private fun setLikeClick(photo: PhotoDetails) {
-        binding.isLiked.setOnClickListener {
+        binding.isLikedButtonView.setOnClickListener {
             viewModel.like(photo)
         }
     }
@@ -261,7 +266,7 @@ class OnePhotoDetailsFragment : BaseFragment<FragmentOnePhotoDetailsBinding>() {
     }
 
     private fun setToolbar(id: String) {
-        val button = binding.shareBar.menu.getItem(0)
+        val button = binding.shareBarView.menu.getItem(0)
         button?.setOnMenuItemClickListener {
             shareLinkOnPhoto(id)
             true

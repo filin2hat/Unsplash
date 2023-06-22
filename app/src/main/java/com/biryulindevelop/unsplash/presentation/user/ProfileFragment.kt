@@ -71,8 +71,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
     private fun updateUiOnServerResponse(loadState: LoadState) {
         if (loadState == LoadState.ERROR) {
-            binding.error.isVisible = true
-            binding.locationButton.isEnabled = false
+            binding.errorView.isVisible = true
+            binding.locationView.isEnabled = false
         }
         if (loadState == LoadState.SUCCESS) {
             viewLifecycleOwner.lifecycleScope
@@ -87,14 +87,14 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         when (state) {
             ProfileState.NotStartedYet -> {}
             is ProfileState.Success -> {
-                binding.locationButton.isEnabled = true
+                binding.locationView.isEnabled = true
                 viewModel.setUsername(state.data.userName) { adapter.refresh() }
-                binding.location.text = state.data.location
-                if (state.data.location == null) binding.locationString.visibility = View.GONE
-                binding.username.text = state.data.userName
-                binding.name.text = state.data.name
-                binding.likes.text = getString(R.string.user_total_likes, state.data.totalLikes)
-                binding.avatar.loadImage(state.data.avatar)
+                binding.locationTextView.text = state.data.location
+                if (state.data.location == null) binding.locationLayout.visibility = View.GONE
+                binding.userNameTextView.text = state.data.userName
+                binding.nameTextView.text = state.data.name
+                binding.likesTextView.text = getString(R.string.user_total_likes, state.data.totalLikes)
+                binding.avatarImgView.loadImage(state.data.avatar)
                 location = state.data.location
             }
 
@@ -117,15 +117,15 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     }
 
     private fun settingAdapter() {
-        binding.photoRecycler.adapter = adapter
-        binding.photoRecycler.itemAnimator?.changeDuration = 0
+        binding.photoRecyclerView.adapter = adapter
+        binding.photoRecyclerView.itemAnimator?.changeDuration = 0
     }
 
     private fun loadStateItemsObserve() {
         adapter.addLoadStateListener { loadState ->
-            binding.error.isVisible =
+            binding.errorView.isVisible =
                 loadState.mediator?.refresh is androidx.paging.LoadState.Error
-            binding.recyclerProgressBar.isVisible =
+            binding.recyclerProgressBarView.isVisible =
                 loadState.mediator?.refresh is androidx.paging.LoadState.Loading
         }
     }
@@ -133,7 +133,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     private fun loadStateLike() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.loadState.collect { loadStateLike ->
-                binding.error.isVisible =
+                binding.errorView.isVisible =
                     loadStateLike == LoadState.ERROR
             }
         }
@@ -141,7 +141,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
     private fun initRefresher() {
         binding.swipeRefresh.setOnRefreshListener {
-            binding.photoRecycler.isVisible = true
+            binding.photoRecyclerView.isVisible = true
             adapter.refresh()
             binding.swipeRefresh.isRefreshing = false
         }
@@ -153,7 +153,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     }
 
     private fun setLocationClick() {
-        binding.locationButton.setOnClickListener {
+        binding.locationView.setOnClickListener {
             if (location != null) {
                 showLocationOnMap(Uri.parse("geo:0,0?q=$location"))
             }
@@ -161,7 +161,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     }
 
     private fun setUpLogoutButton(preferences: SharedPreferences) {
-        val button = binding.logoutBar.menu.getItem(0)
+        val button = binding.logOutBarView.menu.getItem(0)
         button?.setOnMenuItemClickListener {
             setUpAlertDialog(preferences)
             true
