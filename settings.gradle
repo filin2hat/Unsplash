@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Unsplash Attestation"
+rootProject.name = "Unsplash"
 include ':app'
