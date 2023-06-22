@@ -43,7 +43,7 @@
             android:textColor="@color/white"
             android:textSize="11sp" />
 
-        <androidx.legacy.widget.Space
+        <View
             android:id="@+id/space_view"
             android:layout_width="0dp"
             android:layout_height="match_parent"

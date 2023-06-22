@@ -1,4 +1,4 @@
-package com.biryulindevelop.unsplash.di
+package com.biryulindevelop.unsplash.application.di
 
 import android.content.Context
 import com.biryulindevelop.unsplash.data.api.ApiDigest

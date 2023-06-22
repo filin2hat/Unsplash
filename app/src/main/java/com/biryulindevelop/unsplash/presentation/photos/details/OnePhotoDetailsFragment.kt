@@ -24,7 +24,9 @@ import androidx.core.content.ContextCompat.RECEIVER_EXPORTED
 import androidx.core.content.ContextCompat.registerReceiver
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import com.biryulindevelop.unsplash.R
 import com.biryulindevelop.unsplash.data.state.LoadState
@@ -89,9 +91,6 @@ class OnePhotoDetailsFragment : BaseFragment<FragmentOnePhotoDetailsBinding>() {
                 val reference = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
                 if (viewModel.downloadID == reference) {
                     viewModel.getDMStatus(downloadManager)
-                    while (viewModel.downloading) {
-                        //Log.d("Kart", ".")
-                    }
                     if (viewModel.success) {
                         val uri = downloadManager.getUriForDownloadedFile(viewModel.downloadID)
                         showSuccessfulDownloadSnackbar(uri)
@@ -105,10 +104,11 @@ class OnePhotoDetailsFragment : BaseFragment<FragmentOnePhotoDetailsBinding>() {
     }
 
     private fun getLoadingState() {
-        viewLifecycleOwner.lifecycleScope
-            .launchWhenStarted {
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.loadState.collect { loadState -> updateUiOnServerResponse(loadState) }
             }
+        }
     }
 
     private fun updateUiOnServerResponse(loadState: LoadState) {
@@ -120,17 +120,19 @@ class OnePhotoDetailsFragment : BaseFragment<FragmentOnePhotoDetailsBinding>() {
     }
 
     private fun updateUi() {
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.state.collect { state ->
-                when (state) {
-                    DetailsState.NotStartedYet -> {}
-                    is DetailsState.Success -> {
-                        bindUploadedTexts(state)
-                        bindUploadedImages(state)
-                        setUploadedLocation(state)
-                        setToolbar(state.data.id)
-                        setLikeClick(state.data)
-                        setDownloadOnClick(state.data.urls.raw, downloadManager)
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.state.collect { state ->
+                    when (state) {
+                        DetailsState.NotStartedYet -> {}
+                        is DetailsState.Success -> {
+                            bindUploadedTexts(state)
+                            bindUploadedImages(state)
+                            setUploadedLocation(state)
+                            setToolbar(state.data.id)
+                            setLikeClick(state.data)
+                            setDownloadOnClick(state.data.urls.raw, downloadManager)
+                        }
                     }
                 }
             }
@@ -171,7 +173,6 @@ class OnePhotoDetailsFragment : BaseFragment<FragmentOnePhotoDetailsBinding>() {
     }
 
     private fun setLocationClick() {
-
         binding.locationView.setOnClickListener {
             Log.d(TAG, "lat $lat\nlon $lon ")
             if (lat != null && lon != null) {

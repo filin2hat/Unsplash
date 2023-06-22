@@ -92,7 +92,7 @@
                             tools:text="author account" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
-                    <Space
+                    <View
                         android:id="@+id/space_view"
                         android:layout_width="0dp"
                         android:layout_height="49dp"
@@ -163,7 +163,7 @@
                         android:textAlignment="textStart"
                         tools:text="exif" />
 
-                    <androidx.legacy.widget.Space
+                    <View
                         android:id="@+id/space_2"
                         android:layout_width="0dp"
                         android:layout_height="0dp"

@@ -43,6 +43,9 @@ android {
             renderscriptOptimLevel 3
             minifyEnabled false
         }
+//        tasks.withType(JavaCompile).all {
+//            options.compilerArgs.add("-Xlint:all")
+//        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17

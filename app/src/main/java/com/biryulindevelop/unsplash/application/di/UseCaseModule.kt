@@ -1,4 +1,4 @@
-package com.biryulindevelop.unsplash.di
+package com.biryulindevelop.unsplash.application.di
 
 import com.biryulindevelop.unsplash.domain.usecase.implimentations.DigestPagingUseCaseImpl
 import com.biryulindevelop.unsplash.domain.usecase.implimentations.GetDigestInfoUseCaseImpl

@@ -1,4 +1,4 @@
-package com.biryulindevelop.unsplash.di
+package com.biryulindevelop.unsplash.application.di
 
 import com.biryulindevelop.unsplash.data.repository.DigestRemoteRepositoryImpl
 import com.biryulindevelop.unsplash.data.repository.LocalRepositoryImpl
