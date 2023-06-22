@@ -15,7 +15,7 @@ class DigestViewHolder(private val binding: DigestViewHolderBinding) :
             onClick(item)
         }
 
-        binding.preview.loadImage(item.previewPhoto)
+        binding.previewImgView.loadImage(item.previewPhoto)
         binding.authorAvatarImgView.loadImage(item.userProfileImage)
         binding.authorNameTextView.text = item.userUsername
         binding.totalPhotos.text =

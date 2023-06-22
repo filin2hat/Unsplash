@@ -48,13 +48,13 @@ class DigestFragment : BaseFragment<FragmentDigestBinding>() {
     }
 
     private fun settingAdapter() {
-        binding.digestRecycler.adapter = adapter
-        binding.digestRecycler.itemAnimator?.changeDuration = 0
+        binding.digestRecyclerView.adapter = adapter
+        binding.digestRecyclerView.itemAnimator?.changeDuration = 0
     }
 
     private fun initRefresher() {
         binding.swipeRefresh.setOnRefreshListener {
-            binding.digestRecycler.isVisible = true
+            binding.digestRecyclerView.isVisible = true
             adapter.refresh()
             binding.swipeRefresh.isRefreshing = false
         }

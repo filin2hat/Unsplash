@@ -34,7 +34,7 @@ class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>() {
     }
 
     private fun setTabs() {
-        mediator = TabLayoutMediator(binding.tabs, binding.viewPager) { _, _ -> }
+        mediator = TabLayoutMediator(binding.tabsView, binding.viewPager) { _, _ -> }
         mediator!!.attach()
     }
 

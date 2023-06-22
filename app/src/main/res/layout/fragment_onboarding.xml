@@ -7,9 +7,9 @@
     tools:context=".presentation.onboarding.OnboardingFragment">
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabs"
+        android:id="@+id/tabs_view"
         android:layout_width="match_parent"
-        android:layout_height="16dp"
+        android:layout_height="@dimen/common_spacing_medium"
         android:layout_marginStart="120dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="120dp"
@@ -19,9 +19,9 @@
         app:tabBackground="@drawable/ic_ellipse"
         app:tabIndicator="@drawable/ic_tab_selector"
         app:tabIndicatorAnimationMode="elastic"
-        app:tabIndicatorHeight="16dp" />
+        app:tabIndicatorHeight="@dimen/common_spacing_medium" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/cameras_image"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
@@ -32,15 +32,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.35" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ellipse_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="-20dp"
-        android:src="@drawable/ellipse_12"
+        android:src="@drawable/ellipse_green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="VisualLintBounds,ImageContrastCheck" />
 
 
     <androidx.viewpager2.widget.ViewPager2
@@ -54,7 +55,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/authorize_button"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
@@ -63,7 +64,7 @@
         android:backgroundTint="@color/unsplash_green"
         android:text="@string/go_straight_to_authorization"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5" />

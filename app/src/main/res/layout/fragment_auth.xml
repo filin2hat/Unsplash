@@ -10,21 +10,25 @@
         android:id="@+id/black_rectangle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/common_spacing_large"
         android:background="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/btnAuth"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/full_logo"
         app:layout_constraintBottom_toBottomOf="@id/black_rectangle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatImageView" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/appCompatImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ellipse_auth"
@@ -33,6 +37,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
+        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/white"
@@ -41,22 +46,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/black_rectangle" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnAuth"
         android:layout_width="328dp"
         android:layout_height="54dp"
         android:backgroundTint="@color/black"
         android:text="@string/login_via_unsplash"
+        android:textColor="@color/white"
+        android:textSize="@dimen/common_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.6"
+        tools:ignore="VisualLintButtonSize" />
 
-    <TextView
-        android:id="@+id/text"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/auth_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_spacing_large"
         android:gravity="center"
         android:text="@string/auth_success"
         android:textSize="25sp"
@@ -64,15 +73,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnAuth" />
 
-    <ProgressBar
+    <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progress_bar"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:indeterminate="true"
         android:indeterminateTint="@color/unsplash_green"
         android:indeterminateTintMode="src_atop"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text" />
+        app:layout_constraintTop_toBottomOf="@id/auth_text_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

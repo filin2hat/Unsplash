@@ -84,19 +84,19 @@ class DigestDetailsFragment : BaseFragment<FragmentDigestDetailsBinding>() {
             is DigestState.Success -> {
                 binding.toolProgressBar.visibility = View.GONE
                 binding.collapsingToolbarLayout.title = state.data.title
-                binding.digestTitle.text = state.data.title
-                binding.description.text = state.data.description
+                binding.digestTitleTextView.text = state.data.title
+                binding.descriptionTextView.text = state.data.description
                 binding.tagsTextView.text = state.data.tags.joinToString { tag ->
                     "#${tag.title}"
                 }
-                binding.data.text =
+                binding.dateTextView.text =
                     resources.getQuantityString(
                         R.plurals.digest_data,
                         state.data.totalPhotos,
                         state.data.totalPhotos,
                         state.data.userUsername
                     )
-                binding.preview.loadImage(state.data.previewPhoto)
+                binding.previewImgView.loadImage(state.data.previewPhoto)
             }
         }
     }

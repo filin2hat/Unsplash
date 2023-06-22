@@ -85,7 +85,7 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
                             textIsVisible = true,
                             progressIsVisible = false
                         )
-                        binding.text.text = loadState.message
+                        binding.authTextView.text = loadState.message
                     }
                 }
             }
@@ -98,7 +98,7 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
         progressIsVisible: Boolean
     ) {
         binding.btnAuth.isEnabled = buttonIsEnabled
-        binding.text.isVisible = textIsVisible
+        binding.authTextView.isVisible = textIsVisible
         binding.progressBar.isVisible = progressIsVisible
     }
 }
