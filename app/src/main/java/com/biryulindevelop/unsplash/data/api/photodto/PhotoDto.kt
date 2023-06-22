@@ -1,6 +1,6 @@
 package com.biryulindevelop.unsplash.data.api.photodto
 
-import com.biryulindevelop.unsplash.data.local.entity.PhotoEntity
+import com.biryulindevelop.unsplash.data.db.entity.PhotoEntity
 import com.biryulindevelop.unsplash.domain.model.Photo
 import com.google.gson.annotations.SerializedName
 

@@ -2,8 +2,8 @@ package com.biryulindevelop.unsplash.di
 
 import android.content.Context
 import androidx.room.Room
-import com.biryulindevelop.unsplash.data.local.AppDatabase
-import com.biryulindevelop.unsplash.data.local.PhotosDao
+import com.biryulindevelop.unsplash.data.db.AppDatabase
+import com.biryulindevelop.unsplash.data.db.PhotosDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

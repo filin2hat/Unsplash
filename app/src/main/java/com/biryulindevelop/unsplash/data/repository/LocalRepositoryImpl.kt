@@ -3,8 +3,8 @@ package com.biryulindevelop.unsplash.data.repository
 import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.paging.PagingSource
-import com.biryulindevelop.unsplash.data.local.PhotosDao
-import com.biryulindevelop.unsplash.data.local.entity.PhotoEntity
+import com.biryulindevelop.unsplash.data.db.PhotosDao
+import com.biryulindevelop.unsplash.data.db.entity.PhotoEntity
 import com.biryulindevelop.unsplash.domain.repository.LocalRepository
 import javax.inject.Inject
 

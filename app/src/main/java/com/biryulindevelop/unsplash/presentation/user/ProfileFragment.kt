@@ -9,7 +9,9 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.biryulindevelop.unsplash.R
 import com.biryulindevelop.unsplash.data.api.TOKEN_ENABLED_KEY
@@ -63,10 +65,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
     private fun getLoadingState() {
         viewModel.getProfile()
-        viewLifecycleOwner.lifecycleScope
-            .launchWhenStarted {
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.loadState.collect { loadState -> updateUiOnServerResponse(loadState) }
             }
+        }
     }
 
     private fun updateUiOnServerResponse(loadState: LoadState) {
@@ -75,11 +78,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             binding.locationView.isEnabled = false
         }
         if (loadState == LoadState.SUCCESS) {
-            viewLifecycleOwner.lifecycleScope
-                .launchWhenStarted {
-                    viewModel.state
-                        .collect { state -> showInfo(state) }
+            viewLifecycleOwner.lifecycleScope.launch {
+                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    viewModel.state.collect { state -> showInfo(state) }
                 }
+            }
         }
     }
 
@@ -93,7 +96,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                 if (state.data.location == null) binding.locationLayout.visibility = View.GONE
                 binding.userNameTextView.text = state.data.userName
                 binding.nameTextView.text = state.data.name
-                binding.likesTextView.text = getString(R.string.user_total_likes, state.data.totalLikes)
+                binding.likesTextView.text =
+                    getString(R.string.user_total_likes, state.data.totalLikes)
                 binding.avatarImgView.loadImage(state.data.avatar)
                 location = state.data.location
             }

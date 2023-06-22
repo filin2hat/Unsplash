@@ -1,7 +1,7 @@
 package com.biryulindevelop.unsplash.data.api
 
-const val ACCESS_KEY = "aFYYZK6kx8GMEoIHFhzT27rhwgZZtnENvc0M8mAW7XI"
-const val SECRET_KEY = "cOKBHRzF_cc6Cer9SKQ4gR_Y4vD-YFE2u-YGbLYqEMA"
+const val ACCESS_KEY = "A8w5vxV-8gbv6qEfj--oRJVhcHfSJdpw4XEcbHAIwVA"
+const val SECRET_KEY = "hWFdW7VdNwwBbBIxgjVfI1VzCjcLGHiTrVoUo0AsaeU"
 const val REDIRECT_URI = "urn:ietf:wg:oauth:2.0:oob"
 const val SCOPE =
     "public+read_user+" +

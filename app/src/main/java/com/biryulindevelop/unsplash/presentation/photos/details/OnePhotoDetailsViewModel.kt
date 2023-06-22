@@ -10,8 +10,8 @@ import androidx.lifecycle.viewModelScope
 import com.biryulindevelop.unsplash.data.state.LoadState
 
 import com.biryulindevelop.unsplash.domain.model.PhotoDetails
-import com.biryulindevelop.unsplash.domain.usecase.LikeDetailPhotoUseCase
-import com.biryulindevelop.unsplash.domain.usecase.OnePhotoDetailsUseCase
+import com.biryulindevelop.unsplash.domain.usecase.interfaceces.LikeDetailPhotoUseCase
+import com.biryulindevelop.unsplash.domain.usecase.interfaceces.OnePhotoDetailsUseCase
 import com.biryulindevelop.unsplash.tools.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -37,16 +37,16 @@ class OnePhotoDetailsViewModel @Inject constructor(
     fun loadPhotoDetails(id: String) {
         viewModelScope.launch(Dispatchers.IO + handler) {
             _loadState.value = LoadState.SUCCESS
-            _state.value = DetailsState.Success(onePhotoDetailsUseCase.getPhotoDetails(id = id))
+            _state.value = DetailsState.Success(onePhotoDetailsUseCase.execute(id = id))
         }
     }
 
     fun like(item: PhotoDetails) {
         viewModelScope.launch(Dispatchers.IO + handler) {
-            likeDetailPhotoUseCase.likeDetailPhoto(item)
+            likeDetailPhotoUseCase.execute(item)
             _loadState.value = LoadState.SUCCESS
             _state.value =
-                DetailsState.Success(onePhotoDetailsUseCase.getPhotoDetails(id = item.id))
+                DetailsState.Success(onePhotoDetailsUseCase.execute(id = item.id))
         }
     }
 

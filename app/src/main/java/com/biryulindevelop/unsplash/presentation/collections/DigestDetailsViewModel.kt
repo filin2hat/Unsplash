@@ -5,9 +5,9 @@ import androidx.paging.cachedIn
 import com.biryulindevelop.unsplash.data.state.LoadState
 import com.biryulindevelop.unsplash.data.state.Requester
 import com.biryulindevelop.unsplash.domain.model.Photo
-import com.biryulindevelop.unsplash.domain.usecase.GetDigestInfoUseCase
-import com.biryulindevelop.unsplash.domain.usecase.PhotoLikeUseCase
-import com.biryulindevelop.unsplash.domain.usecase.PhotosPagingUseCase
+import com.biryulindevelop.unsplash.domain.usecase.interfaceces.GetDigestInfoUseCase
+import com.biryulindevelop.unsplash.domain.usecase.interfaceces.PhotoLikeUseCase
+import com.biryulindevelop.unsplash.domain.usecase.interfaceces.PhotosPagingUseCase
 import com.biryulindevelop.unsplash.tools.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -35,7 +35,7 @@ class DigestDetailsViewModel @Inject constructor(
 
     fun getDigestInfo(id: String) {
         viewModelScope.launch(Dispatchers.IO + handler) {
-            val a = getDigestInfoUseCase.getDigestInfo(id = id)
+            val a = getDigestInfoUseCase.execute(id = id)
             _loadState.value = LoadState.SUCCESS
             _state.value = DigestState.Success(a)
         }
@@ -43,13 +43,13 @@ class DigestDetailsViewModel @Inject constructor(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     fun getPhoto() = id.asStateFlow()
-        .flatMapLatest { photosPagingUseCase.getPhoto(Requester.COLLECTIONS.apply { param = it }) }
+        .flatMapLatest { photosPagingUseCase.execute(Requester.COLLECTIONS.apply { param = it }) }
         .cachedIn(CoroutineScope(Dispatchers.IO))
 
 
     fun like(item: Photo) {
         viewModelScope.launch(Dispatchers.IO + handler) {
-            photoLikeUseCase.likePhoto(item)
+            photoLikeUseCase.execute(item)
             _loadState.value = LoadState.SUCCESS
         }
     }

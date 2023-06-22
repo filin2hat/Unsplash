@@ -140,7 +140,8 @@ class OnePhotoDetailsFragment : BaseFragment<FragmentOnePhotoDetailsBinding>() {
     @SuppressLint("StringFormatMatches")
     private fun bindUploadedTexts(state: DetailsState.Success) {
         binding.authorNameTextView.text = state.data.user.name
-        binding.authorAccountTextView.text = getString(R.string.author_account, state.data.user.username)
+        binding.authorAccountTextView.text =
+            getString(R.string.author_account, state.data.user.username)
 
         binding.locationTextView.text = state.data.location.city ?: "N/A"
         binding.currentLikesTextView.text = state.data.likes.toString()

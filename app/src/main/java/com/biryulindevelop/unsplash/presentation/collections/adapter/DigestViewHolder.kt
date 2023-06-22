@@ -10,20 +10,19 @@ class DigestViewHolder(private val binding: DigestViewHolderBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: Digest, onClick: (item: Digest) -> Unit) {
-
         binding.root.setOnClickListener {
             onClick(item)
         }
-
-        binding.previewImgView.loadImage(item.previewPhoto)
-        binding.authorAvatarImgView.loadImage(item.userProfileImage)
-        binding.authorNameTextView.text = item.userUsername
-        binding.totalPhotos.text =
-            itemView.context.resources.getQuantityString(
-                R.plurals.total_photos, item.totalPhotos, item.totalPhotos
-            )
-        binding.collectionTitle.text = item.title
-
+        with(binding) {
+            previewImgView.loadImage(item.previewPhoto)
+            authorAvatarImgView.loadImage(item.userProfileImage)
+            authorNameTextView.text = item.userUsername
+            totalPhotos.text =
+                itemView.context.resources.getQuantityString(
+                    R.plurals.total_photos, item.totalPhotos, item.totalPhotos
+                )
+            collectionTitle.text = item.title
+        }
     }
 }
 

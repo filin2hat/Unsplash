@@ -7,7 +7,7 @@ import com.biryulindevelop.unsplash.data.api.digestdto.DigestDto
 import com.biryulindevelop.unsplash.data.api.digestdto.DigestTagDto
 import com.biryulindevelop.unsplash.data.api.photodto.PhotoDto
 import com.biryulindevelop.unsplash.data.api.photodto.TagDto
-import com.biryulindevelop.unsplash.data.local.entity.PhotoEntity
+import com.biryulindevelop.unsplash.data.db.entity.PhotoEntity
 import com.biryulindevelop.unsplash.domain.model.Digest
 import com.biryulindevelop.unsplash.domain.model.DigestTag
 import com.biryulindevelop.unsplash.domain.model.Photo

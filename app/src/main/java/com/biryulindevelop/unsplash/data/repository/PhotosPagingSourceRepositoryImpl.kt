@@ -6,7 +6,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.biryulindevelop.unsplash.data.api.photodto.WrapperPhotoDto
-import com.biryulindevelop.unsplash.data.local.entity.PhotoEntity
+import com.biryulindevelop.unsplash.data.db.entity.PhotoEntity
 import com.biryulindevelop.unsplash.data.state.Requester
 import com.biryulindevelop.unsplash.domain.model.Photo
 import com.biryulindevelop.unsplash.domain.repository.LocalRepository

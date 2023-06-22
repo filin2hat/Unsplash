@@ -31,7 +31,6 @@ class DigestFragment : BaseFragment<FragmentDigestBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         observe()
         settingAdapter()
         initRefresher()

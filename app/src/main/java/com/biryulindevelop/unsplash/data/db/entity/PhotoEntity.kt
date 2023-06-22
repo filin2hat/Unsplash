@@ -1,17 +1,9 @@
-package com.biryulindevelop.unsplash.data.local.entity
+package com.biryulindevelop.unsplash.data.db.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.biryulindevelop.unsplash.domain.model.Photo
-
-
-/**Для каждой фотографии в списке отобразить картинку, лайк от текущего пользователя (или
- * отсутствие лайка), общее количество лайков, создателя фотографии (имя/аватар).
- *
- * Список фотографий кешируется в БД.
-В случае отсутствия соединения с сетью отобразить закешированные фотографии из БД с оповещением пользователя.
- **/
 
 @Entity(tableName = "photos")
 data class PhotoEntity(

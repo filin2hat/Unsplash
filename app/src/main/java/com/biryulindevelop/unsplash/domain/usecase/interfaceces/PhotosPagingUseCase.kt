@@ -1,4 +1,4 @@
-package com.biryulindevelop.unsplash.domain.usecase
+package com.biryulindevelop.unsplash.domain.usecase.interfaceces
 
 import androidx.paging.PagingData
 import com.biryulindevelop.unsplash.data.state.Requester
@@ -6,7 +6,5 @@ import com.biryulindevelop.unsplash.domain.model.Photo
 import kotlinx.coroutines.flow.Flow
 
 interface PhotosPagingUseCase {
-
-    fun getPhoto(requester: Requester): Flow<PagingData<Photo>>
-
+    fun execute(requester: Requester): Flow<PagingData<Photo>>
 }

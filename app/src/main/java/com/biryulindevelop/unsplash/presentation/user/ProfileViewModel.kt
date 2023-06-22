@@ -6,9 +6,9 @@ import com.biryulindevelop.unsplash.data.state.LoadState
 import com.biryulindevelop.unsplash.data.state.Requester
 import com.biryulindevelop.unsplash.domain.model.Photo
 import com.biryulindevelop.unsplash.domain.model.Profile
-import com.biryulindevelop.unsplash.domain.usecase.GetProfileUseCase
-import com.biryulindevelop.unsplash.domain.usecase.PhotoLikeUseCase
-import com.biryulindevelop.unsplash.domain.usecase.PhotosPagingUseCase
+import com.biryulindevelop.unsplash.domain.usecase.interfaceces.GetProfileUseCase
+import com.biryulindevelop.unsplash.domain.usecase.interfaceces.PhotoLikeUseCase
+import com.biryulindevelop.unsplash.domain.usecase.interfaceces.PhotosPagingUseCase
 import com.biryulindevelop.unsplash.tools.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
@@ -34,18 +34,18 @@ class ProfileViewModel @Inject constructor(
     fun getProfile() {
         viewModelScope.launch(Dispatchers.IO + handler) {
             _loadState.value = LoadState.SUCCESS
-            _state.value = ProfileState.Success(getProfileUseCase.getProfile())
+            _state.value = ProfileState.Success(getProfileUseCase.execute())
         }
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
     fun getPhoto() = userName.asStateFlow()
-        .flatMapLatest { photosPagingUseCase.getPhoto(Requester.PROFILE.apply { param = it }) }
+        .flatMapLatest { photosPagingUseCase.execute(Requester.PROFILE.apply { param = it }) }
         .cachedIn(CoroutineScope(Dispatchers.IO))
 
     fun like(item: Photo) {
         viewModelScope.launch(Dispatchers.IO + handler) {
-            photoLikeUseCase.likePhoto(item)
+            photoLikeUseCase.execute(item)
             _loadState.value = LoadState.SUCCESS
         }
     }

@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.biryulindevelop.unsplash.R
@@ -37,7 +39,6 @@ class DigestDetailsFragment : BaseFragment<FragmentDigestDetailsBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         observe()
         loadStateObserver()
         loadStateItemsObserve()
@@ -57,10 +58,11 @@ class DigestDetailsFragment : BaseFragment<FragmentDigestDetailsBinding>() {
 
     private fun loadStateObserver() {
         viewModel.getDigestInfo(args.id)
-        viewLifecycleOwner.lifecycleScope
-            .launchWhenStarted {
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.loadState.collect { loadState -> updateUiOnServerResponse(loadState) }
             }
+        }
     }
 
     private fun updateUiOnServerResponse(loadState: LoadState) {
@@ -68,11 +70,11 @@ class DigestDetailsFragment : BaseFragment<FragmentDigestDetailsBinding>() {
             binding.errorView.isVisible = true
         }
         if (loadState == LoadState.SUCCESS) {
-            viewLifecycleOwner.lifecycleScope
-                .launchWhenStarted {
-                    viewModel.state
-                        .collect { state -> showInfo(state) }
+            viewLifecycleOwner.lifecycleScope.launch {
+                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    viewModel.state.collect { state -> showInfo(state) }
                 }
+            }
         }
     }
 

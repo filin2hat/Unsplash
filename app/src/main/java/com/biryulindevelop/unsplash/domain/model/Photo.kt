@@ -1,6 +1,6 @@
 package com.biryulindevelop.unsplash.domain.model
 
-import com.biryulindevelop.unsplash.data.local.entity.PhotoEntity
+import com.biryulindevelop.unsplash.data.db.entity.PhotoEntity
 
 data class Photo(
     val id: String,

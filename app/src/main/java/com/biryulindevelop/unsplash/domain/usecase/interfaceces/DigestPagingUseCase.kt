@@ -1,9 +1,8 @@
-package com.biryulindevelop.unsplash.domain.usecase
+package com.biryulindevelop.unsplash.domain.usecase.interfaceces
 
 import androidx.paging.Pager
 import com.biryulindevelop.unsplash.domain.model.Digest
 
 interface DigestPagingUseCase {
-
-    fun getDigest(): Pager<Int, Digest>
+    fun execute(): Pager<Int, Digest>
 }
