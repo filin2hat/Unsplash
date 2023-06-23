@@ -6,7 +6,6 @@ import com.biryulindevelop.unsplash.data.db.entity.PhotoEntity
 
 @Dao
 interface PhotosDao {
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(photoEntity: List<PhotoEntity>)
 
@@ -24,6 +23,4 @@ interface PhotosDao {
         deleteAll()
         insert(data)
     }
-
-
 }

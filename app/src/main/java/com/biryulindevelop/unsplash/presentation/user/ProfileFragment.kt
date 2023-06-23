@@ -14,9 +14,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.biryulindevelop.unsplash.R
-import com.biryulindevelop.unsplash.data.api.TOKEN_ENABLED_KEY
-import com.biryulindevelop.unsplash.data.api.TOKEN_SHARED_KEY
-import com.biryulindevelop.unsplash.data.api.TOKEN_SHARED_NAME
+import com.biryulindevelop.unsplash.application.TOKEN_ENABLED_KEY
+import com.biryulindevelop.unsplash.application.TOKEN_SHARED_KEY
+import com.biryulindevelop.unsplash.application.TOKEN_SHARED_NAME
 import com.biryulindevelop.unsplash.data.state.ClickableView
 import com.biryulindevelop.unsplash.data.state.LoadState
 import com.biryulindevelop.unsplash.databinding.FragmentProfileBinding

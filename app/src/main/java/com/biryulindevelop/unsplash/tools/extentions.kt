@@ -3,10 +3,9 @@ package com.biryulindevelop.unsplash.tools
 import android.widget.ImageView
 import androidx.appcompat.widget.SearchView
 import com.biryulindevelop.unsplash.R
-import com.biryulindevelop.unsplash.data.api.digestdto.DigestDto
-import com.biryulindevelop.unsplash.data.api.digestdto.DigestTagDto
-import com.biryulindevelop.unsplash.data.api.photodto.PhotoDto
-import com.biryulindevelop.unsplash.data.api.photodto.TagDto
+import com.biryulindevelop.unsplash.data.api.dto.digest.DigestTagDto
+import com.biryulindevelop.unsplash.data.api.dto.photo.PhotoDto
+import com.biryulindevelop.unsplash.data.api.dto.photo.TagDto
 import com.biryulindevelop.unsplash.data.db.entity.PhotoEntity
 import com.biryulindevelop.unsplash.domain.model.Digest
 import com.biryulindevelop.unsplash.domain.model.DigestTag
@@ -28,7 +27,7 @@ fun List<TagDto>.toListTag(): List<Tags> {
     return this.map { item -> item.toPhotoDetailsTags() }
 }
 
-fun List<DigestDto>.toListDigest(): List<Digest> {
+fun List<com.biryulindevelop.unsplash.data.api.dto.digest.DigestDto>.toListDigest(): List<Digest> {
     val newList = mutableListOf<Digest>()
 
     this.forEach { item ->

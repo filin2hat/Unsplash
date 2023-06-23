@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.biryulindevelop.unsplash.R
-import com.biryulindevelop.unsplash.data.api.ONBOARDING_IS_SHOWN
-import com.biryulindevelop.unsplash.data.api.TOKEN_SHARED_NAME
+import com.biryulindevelop.unsplash.application.ONBOARDING_IS_SHOWN
+import com.biryulindevelop.unsplash.application.TOKEN_SHARED_NAME
 import com.biryulindevelop.unsplash.databinding.FragmentOnboardingBinding
 import com.biryulindevelop.unsplash.tools.BaseFragment
 import com.google.android.material.tabs.TabLayoutMediator

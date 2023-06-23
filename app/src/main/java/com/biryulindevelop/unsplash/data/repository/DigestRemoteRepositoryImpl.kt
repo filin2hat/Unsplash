@@ -8,10 +8,11 @@ import javax.inject.Inject
 
 class DigestRemoteRepositoryImpl @Inject constructor(private val apiDigest: ApiDigest) :
     DigestRemoteRepository {
+    override suspend fun getDigests(page: Int): List<Digest> {
+        return apiDigest.getDigests(page).toListDigest()
+    }
 
-    override suspend fun getDigests(page: Int): List<Digest> =
-        apiDigest.getDigests(page).toListDigest()
-
-    override suspend fun getDigestInfo(id: String): Digest = apiDigest.getDigestInfo(id).toDigest()
-
+    override suspend fun getDigestInfo(id: String): Digest {
+        return apiDigest.getDigestInfo(id).toDigest()
+    }
 }

@@ -1,7 +1,7 @@
 package com.biryulindevelop.unsplash.presentation.auth
 
 import androidx.lifecycle.viewModelScope
-import com.biryulindevelop.unsplash.data.api.ApiToken
+import com.biryulindevelop.unsplash.data.api.authentication.ApiToken
 import com.biryulindevelop.unsplash.data.state.LoadState
 import com.biryulindevelop.unsplash.tools.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -1,9 +1,10 @@
 package com.biryulindevelop.unsplash.data.api
 
-import com.biryulindevelop.unsplash.data.api.photodto.PhotoDetailsDto
-import com.biryulindevelop.unsplash.data.api.photodto.PhotoListDto
-import com.biryulindevelop.unsplash.data.api.photodto.SearchDto
-import com.biryulindevelop.unsplash.data.api.photodto.WrapperPhotoDto
+
+import com.biryulindevelop.unsplash.data.api.dto.photo.PhotoDetailsDto
+import com.biryulindevelop.unsplash.data.api.dto.photo.PhotoListDto
+import com.biryulindevelop.unsplash.data.api.dto.photo.SearchDto
+import com.biryulindevelop.unsplash.data.api.dto.photo.WrapperPhotoDto
 import retrofit2.http.*
 
 interface ApiPhotos {

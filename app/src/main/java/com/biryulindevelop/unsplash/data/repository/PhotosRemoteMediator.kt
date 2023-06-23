@@ -24,7 +24,6 @@ class PhotosRemoteMediator @Inject constructor(
         state: PagingState<Int, PhotoEntity>,
     ): MediatorResult {
         pageIndex = getIndex(loadType) ?: return MediatorResult.Success(true)
-
         return try {
             val response = photoRemoteRepository.getPhotoList(requester, pageIndex).toListEntity()
             if (loadType == LoadType.REFRESH) localRepository.refresh(response)
@@ -39,7 +38,7 @@ class PhotosRemoteMediator @Inject constructor(
         return when (loadType) {
             LoadType.PREPEND -> null
             LoadType.REFRESH -> 0
-            LoadType.APPEND -> ++pageIndex /*поменять на null чтобы грузить 1 страницу*/
+            LoadType.APPEND -> ++pageIndex
         }
     }
 }
