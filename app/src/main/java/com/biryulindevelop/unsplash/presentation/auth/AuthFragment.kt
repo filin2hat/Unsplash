@@ -13,8 +13,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.biryulindevelop.unsplash.R
-import com.biryulindevelop.unsplash.application.CALL
-import com.biryulindevelop.unsplash.application.TOKEN_ENABLED_KEY
+import com.biryulindevelop.unsplash.application.REQUEST
+import com.biryulindevelop.unsplash.application.TOKEN_ENABLED
 import com.biryulindevelop.unsplash.application.TOKEN_KEY
 import com.biryulindevelop.unsplash.application.TOKEN_NAME
 import com.biryulindevelop.unsplash.data.state.LoadState
@@ -40,7 +40,7 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
 
     private fun startAuth() {
         binding.btnAuth.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(CALL))
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(REQUEST))
             startActivity(intent)
         }
     }
@@ -49,7 +49,7 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.token.collect { token ->
                 preferences.edit().putString(TOKEN_KEY, token).apply()
-                preferences.edit().putBoolean(TOKEN_ENABLED_KEY, true).apply()
+                preferences.edit().putBoolean(TOKEN_ENABLED, true).apply()
             }
         }
     }

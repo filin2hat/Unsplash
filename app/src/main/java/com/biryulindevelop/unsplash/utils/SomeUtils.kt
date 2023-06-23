@@ -27,15 +27,6 @@ fun List<DigestDto.DigestTagDto>.toListDigestTag(): List<DigestTag> {
     return this.toList { it.toDigestTag() }
 }
 
-fun ImageView.loadImage(urls: String) {
-    Glide.with(this)
-        .load(urls)
-        .error(R.drawable.baseline_error_24)
-        .diskCacheStrategy(DiskCacheStrategy.ALL)
-        .placeholder(R.drawable.placeholder)
-        .into(this)
-}
-
 fun SearchView.setChangeTextListener(block: (query: String) -> Unit) {
     this.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
         override fun onQueryTextChange(newText: String): Boolean {
@@ -47,4 +38,13 @@ fun SearchView.setChangeTextListener(block: (query: String) -> Unit) {
             return false
         }
     })
+}
+
+fun ImageView.loadImage(urls: String) {
+    Glide.with(this)
+        .load(urls)
+        .error(R.drawable.baseline_error_24)
+        .diskCacheStrategy(DiskCacheStrategy.ALL)
+        .placeholder(R.drawable.placeholder)
+        .into(this)
 }

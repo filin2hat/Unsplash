@@ -15,7 +15,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.biryulindevelop.unsplash.R
-import com.biryulindevelop.unsplash.application.TOKEN_ENABLED_KEY
+import com.biryulindevelop.unsplash.application.TOKEN_ENABLED
 import com.biryulindevelop.unsplash.application.TOKEN_KEY
 import com.biryulindevelop.unsplash.application.TOKEN_NAME
 import com.biryulindevelop.unsplash.data.state.ClickableView
@@ -177,7 +177,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             .setMessage(R.string.logout_message)
             .setPositiveButton(R.string.yes) { _, _ ->
                 preferences.edit().putString(TOKEN_KEY, "").apply()
-                preferences.edit().putBoolean(TOKEN_ENABLED_KEY, false).apply()
+                preferences.edit().putBoolean(TOKEN_ENABLED, false).apply()
                 val action = ProfileFragmentDirections.actionNavigationUserToAuthFragment()
                 findNavController().navigate(action)
             }
