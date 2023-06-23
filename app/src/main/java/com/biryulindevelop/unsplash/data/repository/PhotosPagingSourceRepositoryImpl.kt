@@ -25,8 +25,9 @@ class PhotosPagingSourceRepositoryImpl @Inject constructor(
     override fun getFlowPhoto(requester: Requester): Flow<PagingData<Photo>> {
         return Pager(
             config = PagingConfig(
-                pageSize = 20,
-                enablePlaceholders = false
+                pageSize = 25,
+                enablePlaceholders = true,
+                prefetchDistance = 10
             ),
             remoteMediator = PhotosRemoteMediator(
                 localRepository,
@@ -34,8 +35,8 @@ class PhotosPagingSourceRepositoryImpl @Inject constructor(
                 requester
             ),
             pagingSourceFactory = { localRepository.getPagingData() }
-        ).flow.map {
-            it.map { entity ->
+        ).flow.map { pagingData ->
+            pagingData.map { entity ->
                 entity.toPhoto()
             }
         }

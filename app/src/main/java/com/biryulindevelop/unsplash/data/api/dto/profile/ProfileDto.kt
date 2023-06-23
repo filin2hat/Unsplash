@@ -14,6 +14,13 @@ data class ProfileDto(
     @SerializedName("total_likes")
     val totalLikes: Int
 ) {
+
+    data class ProfileImageDto(
+        val small: String,
+        val medium: String,
+        val large: String
+    )
+
     fun toProfile(): Profile {
         return Profile(
             id = id,

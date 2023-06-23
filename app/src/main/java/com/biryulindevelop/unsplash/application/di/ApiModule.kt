@@ -5,9 +5,9 @@ import com.biryulindevelop.unsplash.data.api.ApiDigest
 import com.biryulindevelop.unsplash.data.api.ApiPhotos
 import com.biryulindevelop.unsplash.data.api.ApiProfile
 import com.biryulindevelop.unsplash.data.api.authentication.ApiToken
+import com.biryulindevelop.unsplash.data.api.authentication.AuthTokenProvider
 import com.biryulindevelop.unsplash.data.api.authentication.interceptor.AuthTokenInterceptor
 import com.biryulindevelop.unsplash.data.api.authentication.interceptor.AuthTokenInterceptorQualifier
-import com.biryulindevelop.unsplash.data.api.authentication.AuthTokenProvider
 import com.biryulindevelop.unsplash.data.api.authentication.interceptor.LoggingInterceptorQualifier
 import dagger.Module
 import dagger.Provides
