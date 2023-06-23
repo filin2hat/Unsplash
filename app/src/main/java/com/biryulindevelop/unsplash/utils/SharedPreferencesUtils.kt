@@ -1,4 +1,4 @@
-package com.biryulindevelop.unsplash.tools
+package com.biryulindevelop.unsplash.utils
 
 import android.content.Context
 import android.content.SharedPreferences

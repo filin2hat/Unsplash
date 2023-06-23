@@ -4,7 +4,7 @@ import com.biryulindevelop.unsplash.domain.model.Exif
 import com.biryulindevelop.unsplash.domain.model.Location
 import com.biryulindevelop.unsplash.domain.model.PhotoDetails
 import com.biryulindevelop.unsplash.domain.model.Position
-import com.biryulindevelop.unsplash.tools.toListTag
+import com.biryulindevelop.unsplash.utils.toListTag
 import com.google.gson.annotations.SerializedName
 
 data class PhotoDetailsDto(

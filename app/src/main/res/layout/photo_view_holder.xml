@@ -24,8 +24,8 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/author_avatar_img_view"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/common_spacing_medium"
             android:src="@drawable/ic_launcher_foreground"

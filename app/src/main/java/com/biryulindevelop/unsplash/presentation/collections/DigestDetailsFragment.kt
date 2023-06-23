@@ -17,7 +17,7 @@ import com.biryulindevelop.unsplash.data.state.LoadState
 import com.biryulindevelop.unsplash.databinding.FragmentDigestDetailsBinding
 import com.biryulindevelop.unsplash.domain.model.Photo
 import com.biryulindevelop.unsplash.presentation.photos.list.adapter.PhotoPagingAdapter
-import com.biryulindevelop.unsplash.tools.loadImage
+import com.biryulindevelop.unsplash.utils.loadImage
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

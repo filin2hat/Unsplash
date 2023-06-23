@@ -9,7 +9,7 @@ import com.biryulindevelop.unsplash.R
 import com.biryulindevelop.unsplash.application.ONBOARDING_IS_SHOWN
 import com.biryulindevelop.unsplash.application.TOKEN_ENABLED_KEY
 import com.biryulindevelop.unsplash.application.TOKEN_NAME
-import com.biryulindevelop.unsplash.tools.SharedPreferencesUtils
+import com.biryulindevelop.unsplash.utils.SharedPreferencesUtils
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,11 +33,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             hasOnboardingShown -> toAuthentication
             else -> toOnboarding
         }
-
         findNavController().navigate(destination)
     }
-
-//    private fun createSharedPrefs(@Suppress("SameParameterValue") tokenName: String): SharedPreferences {
-//        return requireContext().getSharedPreferences(tokenName, Context.MODE_PRIVATE)
-//    }
 }

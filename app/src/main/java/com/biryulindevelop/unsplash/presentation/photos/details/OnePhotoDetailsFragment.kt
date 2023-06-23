@@ -33,7 +33,7 @@ import com.biryulindevelop.unsplash.R
 import com.biryulindevelop.unsplash.data.state.LoadState
 import com.biryulindevelop.unsplash.databinding.FragmentOnePhotoDetailsBinding
 import com.biryulindevelop.unsplash.domain.model.PhotoDetails
-import com.biryulindevelop.unsplash.tools.loadImage
+import com.biryulindevelop.unsplash.utils.loadImage
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

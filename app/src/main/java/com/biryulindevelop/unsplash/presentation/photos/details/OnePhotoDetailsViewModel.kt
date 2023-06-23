@@ -6,14 +6,14 @@ import android.database.Cursor
 import android.net.Uri
 import android.os.Environment
 import android.util.Log
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.biryulindevelop.unsplash.data.state.LoadState
-
 import com.biryulindevelop.unsplash.domain.model.PhotoDetails
 import com.biryulindevelop.unsplash.domain.usecase.interfaceces.LikeDetailPhotoUseCase
 import com.biryulindevelop.unsplash.domain.usecase.interfaceces.OnePhotoDetailsUseCase
-import com.biryulindevelop.unsplash.tools.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -25,7 +25,14 @@ import javax.inject.Inject
 class OnePhotoDetailsViewModel @Inject constructor(
     private val onePhotoDetailsUseCase: OnePhotoDetailsUseCase,
     private val likeDetailPhotoUseCase: LikeDetailPhotoUseCase
-) : BaseViewModel() {
+) : ViewModel() {
+
+    private val _loadState = MutableStateFlow(LoadState.START)
+    val loadState = _loadState.asStateFlow()
+
+    private val handler = CoroutineExceptionHandler { _, _ ->
+        _loadState.value = LoadState.ERROR
+    }
 
     private val _state = MutableStateFlow<DetailsState>(DetailsState.NotStartedYet)
     val state = _state.asStateFlow()

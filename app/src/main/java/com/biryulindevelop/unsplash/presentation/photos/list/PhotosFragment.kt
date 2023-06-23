@@ -15,7 +15,7 @@ import com.biryulindevelop.unsplash.data.state.LoadState
 import com.biryulindevelop.unsplash.databinding.FragmentPhotosBinding
 import com.biryulindevelop.unsplash.domain.model.Photo
 import com.biryulindevelop.unsplash.presentation.photos.list.adapter.PhotoPagingAdapter
-import com.biryulindevelop.unsplash.tools.setChangeTextListener
+import com.biryulindevelop.unsplash.utils.setChangeTextListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

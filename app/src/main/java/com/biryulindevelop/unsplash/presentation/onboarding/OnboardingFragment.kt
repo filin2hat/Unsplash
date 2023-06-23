@@ -9,7 +9,7 @@ import com.biryulindevelop.unsplash.R
 import com.biryulindevelop.unsplash.application.ONBOARDING_IS_SHOWN
 import com.biryulindevelop.unsplash.application.TOKEN_NAME
 import com.biryulindevelop.unsplash.databinding.FragmentOnboardingBinding
-import com.biryulindevelop.unsplash.tools.SharedPreferencesUtils
+import com.biryulindevelop.unsplash.utils.SharedPreferencesUtils
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -5,8 +5,8 @@ const val TOKEN_KEY = "key_token"
 const val TOKEN_ENABLED_KEY = "token_enabled"
 const val ONBOARDING_IS_SHOWN = "onboarding_is_shown"
 
-const val ACCESS_KEY = "rq3GjG6SxyLwKaX7M6wD6GPgsasZA7jD265hag-DdfE"
-const val SECRET_KEY = "z3MWIbbje6qPr_zndSkSwnMxH-5neuoEhmBs-Ojm8BQ"
+const val ACCESS_KEY = "5xEn4jdQ6XPd2bkXSKCfOtDandbKVyqn2Uqrg0e1_HU"
+const val SECRET_KEY = "w8YuxOfRjalMbOf0GGE5LnINifLiyznrDcvIobDSmFA"
 const val REDIRECT_URI = "urn:ietf:wg:oauth:2.0:oob"
 const val SCOPE =
     "public+read_user+" +

@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.biryulindevelop.unsplash.data.state.ClickableView
 import com.biryulindevelop.unsplash.databinding.PhotoViewHolderBinding
 import com.biryulindevelop.unsplash.domain.model.Photo
-import com.biryulindevelop.unsplash.tools.loadImage
+import com.biryulindevelop.unsplash.utils.loadImage
 
 class PhotoViewHolder(private val binding: PhotoViewHolderBinding) :
     RecyclerView.ViewHolder(binding.root) {

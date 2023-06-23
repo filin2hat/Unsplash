@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.biryulindevelop.unsplash.R
 import com.biryulindevelop.unsplash.databinding.DigestViewHolderBinding
 import com.biryulindevelop.unsplash.domain.model.Digest
-import com.biryulindevelop.unsplash.tools.loadImage
+import com.biryulindevelop.unsplash.utils.loadImage
 
 class DigestViewHolder(private val binding: DigestViewHolderBinding) :
     RecyclerView.ViewHolder(binding.root) {

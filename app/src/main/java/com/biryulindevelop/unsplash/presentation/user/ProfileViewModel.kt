@@ -1,5 +1,6 @@
 package com.biryulindevelop.unsplash.presentation.user
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.biryulindevelop.unsplash.data.state.LoadState
@@ -9,7 +10,6 @@ import com.biryulindevelop.unsplash.domain.model.Profile
 import com.biryulindevelop.unsplash.domain.usecase.interfaceces.GetProfileUseCase
 import com.biryulindevelop.unsplash.domain.usecase.interfaceces.PhotoLikeUseCase
 import com.biryulindevelop.unsplash.domain.usecase.interfaceces.PhotosPagingUseCase
-import com.biryulindevelop.unsplash.tools.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -20,7 +20,13 @@ class ProfileViewModel @Inject constructor(
     private val getProfileUseCase: GetProfileUseCase,
     private val photosPagingUseCase: PhotosPagingUseCase,
     private val photoLikeUseCase: PhotoLikeUseCase
-) : BaseViewModel() {
+) : ViewModel() {
+    private val _loadState = MutableStateFlow(LoadState.START)
+    val loadState = _loadState.asStateFlow()
+
+    private val handler = CoroutineExceptionHandler { _, _ ->
+        _loadState.value = LoadState.ERROR
+    }
 
     private val userName = MutableStateFlow("")
     private var job: Job? = null
