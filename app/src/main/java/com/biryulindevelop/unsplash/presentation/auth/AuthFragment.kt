@@ -4,13 +4,14 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.biryulindevelop.unsplash.R
 import com.biryulindevelop.unsplash.application.CALL
 import com.biryulindevelop.unsplash.application.TOKEN_ENABLED_KEY
@@ -18,21 +19,21 @@ import com.biryulindevelop.unsplash.application.TOKEN_KEY
 import com.biryulindevelop.unsplash.application.TOKEN_NAME
 import com.biryulindevelop.unsplash.data.state.LoadState
 import com.biryulindevelop.unsplash.databinding.FragmentAuthBinding
-import com.biryulindevelop.unsplash.tools.BaseFragment
+import com.biryulindevelop.unsplash.tools.SharedPreferencesUtils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class AuthFragment : BaseFragment<FragmentAuthBinding>() {
+class AuthFragment : Fragment(R.layout.fragment_auth) {
 
-    override fun initBinding(inflater: LayoutInflater) = FragmentAuthBinding.inflate(inflater)
+    private val binding by viewBinding(FragmentAuthBinding::bind)
     private val viewModel by viewModels<AuthViewModel>()
     private val args by navArgs<AuthFragmentArgs>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         startAuth()
-        tokenObserve(createSharedPreference(TOKEN_NAME))
+        tokenObserve(SharedPreferencesUtils.createSharedPrefs(requireContext(), TOKEN_NAME))
         loadingObserve()
         viewModel.createToken(args.code)
     }

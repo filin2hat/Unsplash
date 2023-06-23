@@ -1,30 +1,29 @@
 package com.biryulindevelop.unsplash.presentation.onboarding
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.biryulindevelop.unsplash.R
 import com.biryulindevelop.unsplash.application.ONBOARDING_IS_SHOWN
 import com.biryulindevelop.unsplash.application.TOKEN_NAME
 import com.biryulindevelop.unsplash.databinding.FragmentOnboardingBinding
-import com.biryulindevelop.unsplash.tools.BaseFragment
+import com.biryulindevelop.unsplash.tools.SharedPreferencesUtils
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>() {
-
+class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
+    private val binding by viewBinding(FragmentOnboardingBinding::bind)
     private var mediator: TabLayoutMediator? = null
-
-    override fun initBinding(inflater: LayoutInflater) = FragmentOnboardingBinding.inflate(inflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setViewPager()
         setTabs()
         setAuthorizeButton()
-        saveOnbordingShown()
+        saveOnboardingShown()
     }
 
     private fun setViewPager() {
@@ -44,8 +43,8 @@ class OnboardingFragment : BaseFragment<FragmentOnboardingBinding>() {
         }
     }
 
-    private fun saveOnbordingShown() {
-        val prefs = createSharedPreference(TOKEN_NAME)
+    private fun saveOnboardingShown() {
+        val prefs = SharedPreferencesUtils.createSharedPrefs(requireContext(), TOKEN_NAME)
         prefs.edit().putBoolean(ONBOARDING_IS_SHOWN, true).apply()
     }
 

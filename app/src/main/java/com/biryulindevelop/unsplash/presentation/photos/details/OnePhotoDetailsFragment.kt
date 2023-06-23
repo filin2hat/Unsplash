@@ -15,7 +15,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
@@ -23,43 +22,35 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.RECEIVER_EXPORTED
 import androidx.core.content.ContextCompat.registerReceiver
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.biryulindevelop.unsplash.R
 import com.biryulindevelop.unsplash.data.state.LoadState
 import com.biryulindevelop.unsplash.databinding.FragmentOnePhotoDetailsBinding
 import com.biryulindevelop.unsplash.domain.model.PhotoDetails
-import com.biryulindevelop.unsplash.tools.BaseFragment
 import com.biryulindevelop.unsplash.tools.loadImage
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class OnePhotoDetailsFragment : BaseFragment<FragmentOnePhotoDetailsBinding>() {
+class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
 
-    override fun initBinding(inflater: LayoutInflater) =
-        FragmentOnePhotoDetailsBinding.inflate(inflater)
-
+    private val binding by viewBinding(FragmentOnePhotoDetailsBinding::bind)
     private val viewModel: OnePhotoDetailsViewModel by viewModels()
-
     private val args by navArgs<OnePhotoDetailsFragmentArgs>()
-
-    private var lat: Double? = null
-
-    private var lon: Double? = null
-
     private val downloadManager by lazy {
         requireContext().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
     }
-
     private lateinit var receiver: BroadcastReceiver
-
+    private var lat: Double? = null
+    private var lon: Double? = null
     private var enableDownloadFlag = false
-
     private val launcher = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
     ) { map ->

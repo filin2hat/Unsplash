@@ -1,41 +1,36 @@
 package com.biryulindevelop.unsplash.presentation.collections
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.biryulindevelop.unsplash.R
 import com.biryulindevelop.unsplash.data.state.ClickableView
 import com.biryulindevelop.unsplash.data.state.LoadState
 import com.biryulindevelop.unsplash.databinding.FragmentDigestDetailsBinding
 import com.biryulindevelop.unsplash.domain.model.Photo
 import com.biryulindevelop.unsplash.presentation.photos.list.adapter.PhotoPagingAdapter
-import com.biryulindevelop.unsplash.tools.BaseFragment
 import com.biryulindevelop.unsplash.tools.loadImage
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class DigestDetailsFragment : BaseFragment<FragmentDigestDetailsBinding>() {
-
+class DigestDetailsFragment : Fragment(R.layout.fragment_digest_details) {
+    private val binding by viewBinding(FragmentDigestDetailsBinding::bind)
     private val viewModel by viewModels<DigestDetailsViewModel>()
-
+    private val args by navArgs<DigestDetailsFragmentArgs>()
     private val adapter by lazy {
         PhotoPagingAdapter { buttonState, item ->
             onClick(buttonState, item)
         }
     }
-
-    private val args by navArgs<DigestDetailsFragmentArgs>()
-
-    override fun initBinding(inflater: LayoutInflater) =
-        FragmentDigestDetailsBinding.inflate(inflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
