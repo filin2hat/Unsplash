@@ -20,17 +20,19 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val prefs = createSharedPreference(TOKEN_SHARED_NAME)
-        val toOnboardingFragment = MainFragmentDirections.actionMainFragmentToNavigationOnboarding()
-        val toAuthFragment = MainFragmentDirections.actionMainFragmentToAuthFragment()
-        val toPhotosFragment = MainFragmentDirections.actionMainFragmentToNavigationPhotos()
+        val preferences = createSharedPreference(TOKEN_SHARED_NAME)
+        val toOnboarding = MainFragmentDirections.actionMainFragmentToNavigationOnboarding()
+        val toAuthentication = MainFragmentDirections.actionMainFragmentToAuthFragment()
+        val toPhotos = MainFragmentDirections.actionMainFragmentToNavigationPhotos()
 
-        if (prefs.getBoolean(TOKEN_ENABLED_KEY, false))
-            findNavController().navigate(toPhotosFragment)
-        else {
-            if (prefs.getBoolean(ONBOARDING_IS_SHOWN, false))
-                findNavController().navigate(toAuthFragment)
-            else findNavController().navigate(toOnboardingFragment)
+        val hasTokenEnabled = preferences.getBoolean(TOKEN_ENABLED_KEY, false)
+        val hasOnboardingShown = preferences.getBoolean(ONBOARDING_IS_SHOWN, false)
+
+        val destination = when {
+            hasTokenEnabled -> toPhotos
+            hasOnboardingShown -> toAuthentication
+            else -> toOnboarding
         }
+        findNavController().navigate(destination)
     }
 }
