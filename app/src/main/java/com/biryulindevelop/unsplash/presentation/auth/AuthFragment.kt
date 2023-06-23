@@ -14,8 +14,8 @@ import androidx.navigation.fragment.navArgs
 import com.biryulindevelop.unsplash.R
 import com.biryulindevelop.unsplash.application.CALL
 import com.biryulindevelop.unsplash.application.TOKEN_ENABLED_KEY
-import com.biryulindevelop.unsplash.application.TOKEN_SHARED_KEY
-import com.biryulindevelop.unsplash.application.TOKEN_SHARED_NAME
+import com.biryulindevelop.unsplash.application.TOKEN_KEY
+import com.biryulindevelop.unsplash.application.TOKEN_NAME
 import com.biryulindevelop.unsplash.data.state.LoadState
 import com.biryulindevelop.unsplash.databinding.FragmentAuthBinding
 import com.biryulindevelop.unsplash.tools.BaseFragment
@@ -32,7 +32,7 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         startAuth()
-        tokenObserve(createSharedPreference(TOKEN_SHARED_NAME))
+        tokenObserve(createSharedPreference(TOKEN_NAME))
         loadingObserve()
         viewModel.createToken(args.code)
     }
@@ -47,7 +47,7 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>() {
     private fun tokenObserve(preferences: SharedPreferences) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.token.collect { token ->
-                preferences.edit().putString(TOKEN_SHARED_KEY, token).apply()
+                preferences.edit().putString(TOKEN_KEY, token).apply()
                 preferences.edit().putBoolean(TOKEN_ENABLED_KEY, true).apply()
             }
         }

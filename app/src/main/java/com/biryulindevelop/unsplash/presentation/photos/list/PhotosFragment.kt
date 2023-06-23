@@ -1,28 +1,27 @@
 package com.biryulindevelop.unsplash.presentation.photos.list
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import by.kirich1409.viewbindingdelegate.viewBinding
+import com.biryulindevelop.unsplash.R
 import com.biryulindevelop.unsplash.data.state.ClickableView
 import com.biryulindevelop.unsplash.data.state.LoadState
 import com.biryulindevelop.unsplash.databinding.FragmentPhotosBinding
 import com.biryulindevelop.unsplash.domain.model.Photo
 import com.biryulindevelop.unsplash.presentation.photos.list.adapter.PhotoPagingAdapter
-import com.biryulindevelop.unsplash.tools.BaseFragment
 import com.biryulindevelop.unsplash.tools.setChangeTextListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class PhotosFragment : BaseFragment<FragmentPhotosBinding>() {
-
-    override fun initBinding(inflater: LayoutInflater) = FragmentPhotosBinding.inflate(inflater)
-
+class PhotosFragment : Fragment(R.layout.fragment_photos) {
+    private val binding by viewBinding(FragmentPhotosBinding::bind)
     private val viewModel by viewModels<PhotosViewModel>()
 
     private val adapter by lazy {

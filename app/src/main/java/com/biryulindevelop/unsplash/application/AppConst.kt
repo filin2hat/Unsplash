@@ -1,12 +1,12 @@
 package com.biryulindevelop.unsplash.application
 
-const val TOKEN_SHARED_NAME = "pref_token"
-const val TOKEN_SHARED_KEY = "token"
+const val TOKEN_NAME = "name_token"
+const val TOKEN_KEY = "key_token"
 const val TOKEN_ENABLED_KEY = "token_enabled"
 const val ONBOARDING_IS_SHOWN = "onboarding_is_shown"
 
-const val ACCESS_KEY = "A8w5vxV-8gbv6qEfj--oRJVhcHfSJdpw4XEcbHAIwVA"
-const val SECRET_KEY = "hWFdW7VdNwwBbBIxgjVfI1VzCjcLGHiTrVoUo0AsaeU"
+const val ACCESS_KEY = "a7_MneCj4KFEEB5cUYKiKVM9PEjV4UZ02PsT6a6hBys"
+const val SECRET_KEY = "Watj-rO6-1sSj7ZffXnC1Kbr4mL6QpFmCsD9CDUakK0"
 const val REDIRECT_URI = "urn:ietf:wg:oauth:2.0:oob"
 const val SCOPE =
     "public+read_user+" +

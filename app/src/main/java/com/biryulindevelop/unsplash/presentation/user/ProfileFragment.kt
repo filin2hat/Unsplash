@@ -4,34 +4,33 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.biryulindevelop.unsplash.R
 import com.biryulindevelop.unsplash.application.TOKEN_ENABLED_KEY
-import com.biryulindevelop.unsplash.application.TOKEN_SHARED_KEY
-import com.biryulindevelop.unsplash.application.TOKEN_SHARED_NAME
+import com.biryulindevelop.unsplash.application.TOKEN_KEY
+import com.biryulindevelop.unsplash.application.TOKEN_NAME
 import com.biryulindevelop.unsplash.data.state.ClickableView
 import com.biryulindevelop.unsplash.data.state.LoadState
 import com.biryulindevelop.unsplash.databinding.FragmentProfileBinding
 import com.biryulindevelop.unsplash.domain.model.Photo
 import com.biryulindevelop.unsplash.presentation.photos.list.adapter.PhotoPagingAdapter
-import com.biryulindevelop.unsplash.tools.BaseFragment
+import com.biryulindevelop.unsplash.tools.SharedPreferencesUtils
 import com.biryulindevelop.unsplash.tools.loadImage
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
-
-    override fun initBinding(inflater: LayoutInflater) = FragmentProfileBinding.inflate(inflater)
-
+class ProfileFragment : Fragment(R.layout.fragment_profile) {
+    private val binding by viewBinding(FragmentProfileBinding::bind)
     private val viewModel by viewModels<ProfileViewModel>()
 
     private val adapter by lazy {
@@ -52,7 +51,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         settingAdapter()
         initRefresher()
         setLocationClick()
-        setUpLogoutButton(createSharedPreference(TOKEN_SHARED_NAME))
+        setUpLogoutButton(SharedPreferencesUtils.createSharedPrefs(requireContext(), TOKEN_NAME))
     }
 
     private fun observe() {
@@ -177,7 +176,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         dialog.setTitle(R.string.logout_title)
             .setMessage(R.string.logout_message)
             .setPositiveButton(R.string.yes) { _, _ ->
-                preferences.edit().putString(TOKEN_SHARED_KEY, "").apply()
+                preferences.edit().putString(TOKEN_KEY, "").apply()
                 preferences.edit().putBoolean(TOKEN_ENABLED_KEY, false).apply()
                 val action = ProfileFragmentDirections.actionNavigationUserToAuthFragment()
                 findNavController().navigate(action)
