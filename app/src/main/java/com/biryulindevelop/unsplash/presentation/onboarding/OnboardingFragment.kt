@@ -27,9 +27,12 @@ class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
     }
 
     private fun setViewPager() {
-        binding.viewPager.adapter =
-            ViewPagerAdapter(resources.getStringArray(R.array.onboarding_texts_array))
-        binding.viewPager.registerOnPageChangeCallback(AnimateImageOnPageChange(binding.ellipseImage))
+        with(binding) {
+            viewPager.adapter =
+                ViewPagerAdapter(resources.getStringArray(R.array.onboarding_texts_array))
+            viewPager.registerOnPageChangeCallback(AnimateImageOnPageChange(binding.ellipseImage))
+        }
+
     }
 
     private fun setTabs() {

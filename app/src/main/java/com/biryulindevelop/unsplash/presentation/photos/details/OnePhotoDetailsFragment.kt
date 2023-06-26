@@ -51,6 +51,7 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
     private var lat: Double? = null
     private var lon: Double? = null
     private var enableDownloadFlag = false
+
     private val launcher = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
     ) { map ->
@@ -84,9 +85,9 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
                     viewModel.getDMStatus(downloadManager)
                     if (viewModel.success) {
                         val uri = downloadManager.getUriForDownloadedFile(viewModel.downloadID)
-                        showSuccessfulDownloadSnackbar(uri)
+                        showSuccessfulDownloadMsg(uri)
                     } else {
-                        showFailedDownloadSnackbar()
+                        showFailedDownloadMsg()
                     }
                 }
             }
@@ -104,8 +105,10 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
 
     private fun updateUiOnServerResponse(loadState: LoadState) {
         if (loadState == LoadState.ERROR) {
-            binding.errorView.isVisible = true
-            binding.scrollView.isVisible = false
+            with(binding){
+                errorView.isVisible = true
+                scrollView.isVisible = false
+            }
         }
         if (loadState == LoadState.SUCCESS) updateUi()
     }
@@ -132,28 +135,30 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
 
     @SuppressLint("StringFormatMatches")
     private fun bindUploadedTexts(state: DetailsState.Success) {
-        binding.authorNameTextView.text = state.data.user.name
-        binding.authorAccountTextView.text =
-            getString(R.string.author_account, state.data.user.username)
-
-        binding.locationTextView.text = state.data.location.city ?: "N/A"
-        binding.currentLikesTextView.text = state.data.likes.toString()
-        binding.isLikedButtonView.isSelected = state.data.likedByUser
-
-        binding.tagsTextView.text = state.data.tags.joinToString { tag ->
-            "#${tag.title ?: "N/A"}"
+        with(binding) {
+            authorNameTextView.text = state.data.user.name
+            authorAccountTextView.text =
+                getString(R.string.author_account, state.data.user.username)
+            locationTextView.text = state.data.location.city ?: "N/A"
+            currentLikesTextView.text = state.data.likes.toString()
+            isLikedButtonView.isSelected = state.data.likedByUser
+            tagsTextView.text = state.data.tags.joinToString { tag ->
+                "#${tag.title ?: "N/A"}"
+            }
+            exifTextView.text = buildExifText(state)
+            aboutAuthorTextView.text = getString(
+                R.string.about, state.data.user.username, state.data.user.bio ?: "N/A"
+            )
+            downloadsCountTextView.text =
+                getString(R.string.download, state.data.downloads, state.data.downloads)
         }
-        binding.exifTextView.text = buildExifText(state)
-        binding.aboutAuthorTextView.text = getString(
-            R.string.about, state.data.user.username, state.data.user.bio ?: "N/A"
-        )
-        binding.downloadsCountTextView.text =
-            getString(R.string.download, state.data.downloads, state.data.downloads)
     }
 
     private fun bindUploadedImages(state: DetailsState.Success) {
-        binding.photoImgView.loadImage(state.data.urls.regular)
-        binding.authorAvatarImgView.loadImage(state.data.user.profileImage.small)
+        with(binding) {
+            photoImgView.loadImage(state.data.urls.regular)
+            authorAvatarImgView.loadImage(state.data.user.profileImage.small)
+        }
     }
 
     private fun setUploadedLocation(state: DetailsState.Success) {
@@ -173,7 +178,7 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
                 }
             } else {
                 Log.d(TAG, "don't open map")
-                showNoLocationDataSnackbar()
+                showNoLocationMsg()
             }
         }
     }
@@ -200,7 +205,7 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
         }
     }
 
-    private fun showSuccessfulDownloadSnackbar(uri: Uri) {
+    private fun showSuccessfulDownloadMsg(uri: Uri) {
         val mySnackbar = Snackbar.make(
             binding.myCoordinatorLayout,
             getString(R.string.download_finished),
@@ -218,7 +223,7 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
         mySnackbar.show()
     }
 
-    private fun showFailedDownloadSnackbar() {
+    private fun showFailedDownloadMsg() {
         Snackbar.make(
             binding.myCoordinatorLayout,
             getString(R.string.failed_download),
@@ -250,7 +255,7 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
         startActivity(intent)
     }
 
-    private fun showNoLocationDataSnackbar() {
+    private fun showNoLocationMsg() {
         Snackbar.make(
             binding.myCoordinatorLayout,
             getString(R.string.no_location),
@@ -261,12 +266,12 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
     private fun setToolbar(id: String) {
         val button = binding.shareBarView.menu.getItem(0)
         button?.setOnMenuItemClickListener {
-            shareLinkOnPhoto(id)
+            sharePhoto(id)
             true
         }
     }
 
-    private fun shareLinkOnPhoto(id: String) {
+    private fun sharePhoto(id: String) {
         val sharingIntent = Intent(Intent.ACTION_SEND)
         sharingIntent.type = "text/plain"
         sharingIntent.putExtra(Intent.EXTRA_TEXT, "https://unsplash.com/photos/$id")

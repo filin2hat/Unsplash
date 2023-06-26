@@ -18,25 +18,18 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class DigestFragment : Fragment(R.layout.fragment_digest) {
     private val binding by viewBinding(FragmentDigestBinding::bind)
-    private val viewModel by viewModels<DigestViewModel>()
+    private val viewModel: DigestViewModel by viewModels()
     private val adapter by lazy { DigestPagingAdapter { item -> onClick(item) } }
-
-    private fun onClick(item: Digest) {
-        findNavController().navigate(
-            DigestFragmentDirections.actionNavigationDigestToDigestDetailsFragment(item.id)
-        )
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observe()
+        getDigest()
         settingAdapter()
-        initRefresher()
-        loadStateItemsObserve()
-
+        refresher()
+        getLoadingState()
     }
 
-    private fun observe() {
+    private fun getDigest() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.getDigest().collect {
                 adapter.submitData(it)
@@ -45,25 +38,37 @@ class DigestFragment : Fragment(R.layout.fragment_digest) {
     }
 
     private fun settingAdapter() {
-        binding.digestRecyclerView.adapter = adapter
-        binding.digestRecyclerView.itemAnimator?.changeDuration = 0
-    }
-
-    private fun initRefresher() {
-        binding.swipeRefresh.setOnRefreshListener {
-            binding.digestRecyclerView.isVisible = true
-            adapter.refresh()
-            binding.swipeRefresh.isRefreshing = false
+        with(binding) {
+            digestRecyclerView.adapter = adapter
+            digestRecyclerView.itemAnimator?.changeDuration = 0
         }
     }
 
-    private fun loadStateItemsObserve() {
+    private fun refresher() {
+        with(binding) {
+            swipeRefresh.setOnRefreshListener {
+                digestRecyclerView.isVisible = true
+                adapter.refresh()
+                swipeRefresh.isRefreshing = false
+            }
+        }
+    }
+
+    private fun getLoadingState() {
         adapter.addLoadStateListener { loadState ->
-            binding.errorView.isVisible =
-                loadState.refresh is androidx.paging.LoadState.Error
-            binding.recyclerProgressBarView.isVisible =
-                loadState.refresh is androidx.paging.LoadState.Loading
+            with(binding) {
+                errorView.isVisible =
+                    loadState.refresh is androidx.paging.LoadState.Error
+                recyclerProgressBarView.isVisible =
+                    loadState.refresh is androidx.paging.LoadState.Loading
+            }
         }
+    }
+
+    private fun onClick(item: Digest) {
+        findNavController().navigate(
+            DigestFragmentDirections.actionNavigationDigestToDigestDetailsFragment(item.id)
+        )
     }
 }
 

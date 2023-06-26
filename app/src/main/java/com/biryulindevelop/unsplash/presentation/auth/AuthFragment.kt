@@ -27,8 +27,8 @@ import kotlinx.coroutines.launch
 class AuthFragment : Fragment(R.layout.fragment_auth) {
 
     private val binding by viewBinding(FragmentAuthBinding::bind)
-    private val viewModel by viewModels<AuthViewModel>()
-    private val args by navArgs<AuthFragmentArgs>()
+    private val viewModel: AuthViewModel by viewModels()
+    private val args: AuthFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -98,8 +98,10 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
         textIsVisible: Boolean,
         progressIsVisible: Boolean
     ) {
-        binding.btnAuth.isEnabled = buttonIsEnabled
-        binding.authTextView.isVisible = textIsVisible
-        binding.progressBar.isVisible = progressIsVisible
+        with(binding) {
+            btnAuth.isEnabled = buttonIsEnabled
+            authTextView.isVisible = textIsVisible
+            progressBar.isVisible = progressIsVisible
+        }
     }
 }

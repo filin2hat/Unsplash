@@ -22,25 +22,24 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class PhotosFragment : Fragment(R.layout.fragment_photos) {
     private val binding by viewBinding(FragmentPhotosBinding::bind)
-    private val viewModel by viewModels<PhotosViewModel>()
-
+    private val viewModel: PhotosViewModel by viewModels()
     private val adapter by lazy {
         PhotoPagingAdapter { buttonState, item ->
-            onClick(buttonState, item)
+            onClickItem(buttonState, item)
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observe()
-        loadStateItemsObserve()
+        getFlowPhotos()
+        getLoadingState()
         loadStateLike()
         settingAdapter()
         setSearchView()
-        initRefresher()
+        refresher()
     }
 
-    private fun observe() {
+    private fun getFlowPhotos() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.getPhoto().collect { pagingData ->
                 adapter.submitData(pagingData)
@@ -48,7 +47,7 @@ class PhotosFragment : Fragment(R.layout.fragment_photos) {
         }
     }
 
-    private fun onClick(buttonState: ClickableView, item: Photo) {
+    private fun onClickItem(buttonState: ClickableView, item: Photo) {
         val action =
             PhotosFragmentDirections.actionNavigationPhotosToNavigationPhotoDetails(item.id)
         when (buttonState) {
@@ -65,17 +64,21 @@ class PhotosFragment : Fragment(R.layout.fragment_photos) {
     }
 
     private fun settingAdapter() {
-        binding.photoRecyclerView.adapter = adapter
-        binding.photoRecyclerView.itemAnimator?.changeDuration = 0
+        with(binding) {
+            photoRecyclerView.adapter = adapter
+            photoRecyclerView.itemAnimator?.changeDuration = 0
+        }
     }
 
-    private fun loadStateItemsObserve() {
+    private fun getLoadingState() {
         viewLifecycleOwner.lifecycleScope.launch {
             adapter.loadStateFlow.collect { loadState ->
-                binding.errorView.isVisible =
-                    loadState.mediator?.refresh is androidx.paging.LoadState.Error
-                binding.recyclerProgressBarView.isVisible =
-                    loadState.mediator?.refresh is androidx.paging.LoadState.Loading
+                with(binding) {
+                    errorView.isVisible =
+                        loadState.mediator?.refresh is androidx.paging.LoadState.Error
+                    recyclerProgressBarView.isVisible =
+                        loadState.mediator?.refresh is androidx.paging.LoadState.Loading
+                }
             }
         }
     }
@@ -88,11 +91,13 @@ class PhotosFragment : Fragment(R.layout.fragment_photos) {
         }
     }
 
-    private fun initRefresher() {
+    private fun refresher() {
         binding.swipeRefresh.setOnRefreshListener {
-            binding.photoRecyclerView.isVisible = true
-            adapter.refresh()
-            binding.swipeRefresh.isRefreshing = false
+            with(binding) {
+                photoRecyclerView.isVisible = true
+                adapter.refresh()
+                swipeRefresh.isRefreshing = false
+            }
         }
     }
 }

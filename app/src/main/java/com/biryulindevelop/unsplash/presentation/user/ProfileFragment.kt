@@ -31,30 +31,27 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private val binding by viewBinding(FragmentProfileBinding::bind)
-    private val viewModel by viewModels<ProfileViewModel>()
-
+    private val viewModel: ProfileViewModel by viewModels()
     private val adapter by lazy {
         PhotoPagingAdapter { buttonState, item ->
-            onClick(buttonState, item)
+            onClickItem(buttonState, item)
         }
     }
-
     private var location: String? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        observe()
+        getLikedPhotos()
         getLoadingState()
-        loadStateItemsObserve()
+        loadStateItems()
         loadStateLike()
         settingAdapter()
-        initRefresher()
+        refresher()
         setLocationClick()
-        setUpLogoutButton(SharedPreferencesUtils.createSharedPrefs(requireContext(), TOKEN_NAME))
+        setupLogoutButton(SharedPreferencesUtils.createSharedPrefs(requireContext(), TOKEN_NAME))
     }
 
-    private fun observe() {
+    private fun getLikedPhotos() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.getPhoto().collect { pagingData ->
                 adapter.submitData(pagingData)
@@ -66,45 +63,49 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         viewModel.getProfile()
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.loadState.collect { loadState -> updateUiOnServerResponse(loadState) }
+                viewModel.loadState.collect { loadState -> updateUi(loadState) }
             }
         }
     }
 
-    private fun updateUiOnServerResponse(loadState: LoadState) {
+    private fun updateUi(loadState: LoadState) {
         if (loadState == LoadState.ERROR) {
-            binding.errorView.isVisible = true
-            binding.locationView.isEnabled = false
+            with(binding) {
+                errorView.isVisible = true
+                locationView.isEnabled = false
+            }
+
         }
         if (loadState == LoadState.SUCCESS) {
             viewLifecycleOwner.lifecycleScope.launch {
                 repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    viewModel.state.collect { state -> showInfo(state) }
+                    viewModel.state.collect { state -> showProfileInfo(state) }
                 }
             }
         }
     }
 
-    private fun showInfo(state: ProfileState) {
+    private fun showProfileInfo(state: ProfileState) {
         when (state) {
-            ProfileState.NotStartedYet -> {}
+            ProfileState.NotStarted -> {}
             is ProfileState.Success -> {
-                binding.locationView.isEnabled = true
-                viewModel.setUsername(state.data.userName) { adapter.refresh() }
-                binding.locationTextView.text = state.data.location
-                if (state.data.location == null) binding.locationLayout.visibility = View.GONE
-                binding.userNameTextView.text = state.data.userName
-                binding.nameTextView.text = state.data.name
-                binding.likesTextView.text =
-                    getString(R.string.user_total_likes, state.data.totalLikes)
-                binding.avatarImgView.loadImage(state.data.avatar)
-                location = state.data.location
+                with(binding) {
+                    locationView.isEnabled = true
+                    viewModel.setUsername(state.data.userName) { adapter.refresh() }
+                    locationTextView.text = state.data.location
+                    if (state.data.location == null) binding.locationLayout.visibility = View.GONE
+                    userNameTextView.text = state.data.userName
+                    nameTextView.text = state.data.name
+                    likesTextView.text =
+                        getString(R.string.user_total_likes, state.data.totalLikes)
+                    avatarImgView.loadImage(state.data.avatar)
+                    location = state.data.location
+                }
             }
-
         }
     }
 
-    private fun onClick(buttonState: ClickableView, item: Photo) {
+    private fun onClickItem(buttonState: ClickableView, item: Photo) {
         when (buttonState) {
             ClickableView.PHOTO ->
                 findNavController().navigate(
@@ -120,16 +121,20 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     }
 
     private fun settingAdapter() {
-        binding.photoRecyclerView.adapter = adapter
-        binding.photoRecyclerView.itemAnimator?.changeDuration = 0
+        with(binding) {
+            photoRecyclerView.adapter = adapter
+            photoRecyclerView.itemAnimator?.changeDuration = 0
+        }
     }
 
-    private fun loadStateItemsObserve() {
+    private fun loadStateItems() {
         adapter.addLoadStateListener { loadState ->
-            binding.errorView.isVisible =
-                loadState.mediator?.refresh is androidx.paging.LoadState.Error
-            binding.recyclerProgressBarView.isVisible =
-                loadState.mediator?.refresh is androidx.paging.LoadState.Loading
+            with(binding) {
+                errorView.isVisible =
+                    loadState.mediator?.refresh is androidx.paging.LoadState.Error
+                recyclerProgressBarView.isVisible =
+                    loadState.mediator?.refresh is androidx.paging.LoadState.Loading
+            }
         }
     }
 
@@ -142,11 +147,13 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         }
     }
 
-    private fun initRefresher() {
+    private fun refresher() {
         binding.swipeRefresh.setOnRefreshListener {
-            binding.photoRecyclerView.isVisible = true
-            adapter.refresh()
-            binding.swipeRefresh.isRefreshing = false
+            with(binding) {
+                photoRecyclerView.isVisible = true
+                adapter.refresh()
+                swipeRefresh.isRefreshing = false
+            }
         }
     }
 
@@ -163,15 +170,15 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         }
     }
 
-    private fun setUpLogoutButton(preferences: SharedPreferences) {
+    private fun setupLogoutButton(preferences: SharedPreferences) {
         val button = binding.logOutBarView.menu.getItem(0)
         button?.setOnMenuItemClickListener {
-            setUpAlertDialog(preferences)
+            alertDialog(preferences)
             true
         }
     }
 
-    private fun setUpAlertDialog(preferences: SharedPreferences) {
+    private fun alertDialog(preferences: SharedPreferences) {
         val dialog = AlertDialog.Builder(requireContext())
         dialog.setTitle(R.string.logout_title)
             .setMessage(R.string.logout_message)

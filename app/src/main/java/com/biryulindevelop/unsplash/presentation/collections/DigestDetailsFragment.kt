@@ -24,25 +24,25 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class DigestDetailsFragment : Fragment(R.layout.fragment_digest_details) {
     private val binding by viewBinding(FragmentDigestDetailsBinding::bind)
-    private val viewModel by viewModels<DigestDetailsViewModel>()
-    private val args by navArgs<DigestDetailsFragmentArgs>()
+    private val viewModel: DigestDetailsViewModel by viewModels()
+    private val args: DigestDetailsFragmentArgs by navArgs()
     private val adapter by lazy {
         PhotoPagingAdapter { buttonState, item ->
-            onClick(buttonState, item)
+            onClickItem(buttonState, item)
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observe()
-        loadStateObserver()
+        getDigestDetails()
+        getLoadingState()
         loadStateItemsObserve()
         loadStateLike()
         settingAdapter()
-        initRefresher()
+        refresher()
     }
 
-    private fun observe() {
+    private fun getDigestDetails() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.setId(args.id) { adapter.refresh() }
             viewModel.getPhoto().collect { pagingData ->
@@ -51,54 +51,56 @@ class DigestDetailsFragment : Fragment(R.layout.fragment_digest_details) {
         }
     }
 
-    private fun loadStateObserver() {
+    private fun getLoadingState() {
         viewModel.getDigestInfo(args.id)
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.loadState.collect { loadState -> updateUiOnServerResponse(loadState) }
+                viewModel.loadState.collect { loadState -> updateUi(loadState) }
             }
         }
     }
 
-    private fun updateUiOnServerResponse(loadState: LoadState) {
+    private fun updateUi(loadState: LoadState) {
         if (loadState == LoadState.ERROR) {
             binding.errorView.isVisible = true
         }
         if (loadState == LoadState.SUCCESS) {
             viewLifecycleOwner.lifecycleScope.launch {
                 repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    viewModel.state.collect { state -> showInfo(state) }
+                    viewModel.state.collect { state -> showDetailInfo(state) }
                 }
             }
         }
     }
 
-    private fun showInfo(state: DigestState) {
+    private fun showDetailInfo(state: DigestState) {
         when (state) {
             DigestState.NotStartedYet ->
                 binding.toolProgressBar.visibility = View.VISIBLE
 
             is DigestState.Success -> {
-                binding.toolProgressBar.visibility = View.GONE
-                binding.collapsingToolbarLayout.title = state.data.title
-                binding.digestTitleTextView.text = state.data.title
-                binding.descriptionTextView.text = state.data.description
-                binding.tagsTextView.text = state.data.tags.joinToString { tag ->
-                    "#${tag.title}"
+                with(binding) {
+                    toolProgressBar.visibility = View.GONE
+                    collapsingToolbarLayout.title = state.data.title
+                    digestTitleTextView.text = state.data.title
+                    descriptionTextView.text = state.data.description
+                    tagsTextView.text = state.data.tags.joinToString { tag ->
+                        "#${tag.title}"
+                    }
+                    dateTextView.text =
+                        resources.getQuantityString(
+                            R.plurals.digest_data,
+                            state.data.totalPhotos,
+                            state.data.totalPhotos,
+                            state.data.userUsername
+                        )
+                    previewImgView.loadImage(state.data.previewPhoto)
                 }
-                binding.dateTextView.text =
-                    resources.getQuantityString(
-                        R.plurals.digest_data,
-                        state.data.totalPhotos,
-                        state.data.totalPhotos,
-                        state.data.userUsername
-                    )
-                binding.previewImgView.loadImage(state.data.previewPhoto)
             }
         }
     }
 
-    private fun onClick(buttonState: ClickableView, item: Photo) {
+    private fun onClickItem(buttonState: ClickableView, item: Photo) {
         when (buttonState) {
             ClickableView.PHOTO ->
                 findNavController().navigate(
@@ -106,22 +108,25 @@ class DigestDetailsFragment : Fragment(R.layout.fragment_digest_details) {
                         item.id
                     )
                 )
-
             ClickableView.LIKE -> viewModel.like(item)
         }
     }
 
     private fun settingAdapter() {
-        binding.photoRecyclerView.adapter = adapter
-        binding.photoRecyclerView.itemAnimator?.changeDuration = 0
+        with(binding) {
+            photoRecyclerView.adapter = adapter
+            photoRecyclerView.itemAnimator?.changeDuration = 0
+        }
     }
 
     private fun loadStateItemsObserve() {
         adapter.addLoadStateListener { loadState ->
-            binding.errorView.isVisible =
-                loadState.mediator?.refresh is androidx.paging.LoadState.Error
-            binding.recyclerProgressBarView.isVisible =
-                loadState.mediator?.refresh is androidx.paging.LoadState.Loading
+            with(binding) {
+                errorView.isVisible =
+                    loadState.mediator?.refresh is androidx.paging.LoadState.Error
+                recyclerProgressBarView.isVisible =
+                    loadState.mediator?.refresh is androidx.paging.LoadState.Loading
+            }
         }
     }
 
@@ -134,11 +139,13 @@ class DigestDetailsFragment : Fragment(R.layout.fragment_digest_details) {
         }
     }
 
-    private fun initRefresher() {
-        binding.swipeRefresh.setOnRefreshListener {
-            binding.photoRecyclerView.isVisible = true
-            adapter.refresh()
-            binding.swipeRefresh.isRefreshing = false
+    private fun refresher() {
+        with(binding) {
+            swipeRefresh.setOnRefreshListener {
+                photoRecyclerView.isVisible = true
+                adapter.refresh()
+                swipeRefresh.isRefreshing = false
+            }
         }
     }
 }

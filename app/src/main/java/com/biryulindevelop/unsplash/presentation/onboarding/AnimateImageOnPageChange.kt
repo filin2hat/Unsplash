@@ -3,7 +3,7 @@ package com.biryulindevelop.unsplash.presentation.onboarding
 import android.widget.ImageView
 import androidx.viewpager2.widget.ViewPager2
 
-class AnimateImageOnPageChange(val image: ImageView) : ViewPager2.OnPageChangeCallback() {
+class AnimateImageOnPageChange(private val image: ImageView) : ViewPager2.OnPageChangeCallback() {
     override fun onPageScrolled(
         position: Int,
         positionOffset: Float,

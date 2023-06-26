@@ -1,15 +1,14 @@
 package com.biryulindevelop.unsplash.presentation.user
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.biryulindevelop.unsplash.data.state.LoadState
 import com.biryulindevelop.unsplash.data.state.Requester
 import com.biryulindevelop.unsplash.domain.model.Photo
-import com.biryulindevelop.unsplash.domain.model.Profile
 import com.biryulindevelop.unsplash.domain.usecase.interfaceces.GetProfileUseCase
 import com.biryulindevelop.unsplash.domain.usecase.interfaceces.PhotoLikeUseCase
 import com.biryulindevelop.unsplash.domain.usecase.interfaceces.PhotosPagingUseCase
+import com.biryulindevelop.unsplash.presentation.StateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -20,26 +19,14 @@ class ProfileViewModel @Inject constructor(
     private val getProfileUseCase: GetProfileUseCase,
     private val photosPagingUseCase: PhotosPagingUseCase,
     private val photoLikeUseCase: PhotoLikeUseCase
-) : ViewModel() {
-    private val _loadState = MutableStateFlow(LoadState.START)
-    val loadState = _loadState.asStateFlow()
+) : StateViewModel() {
 
-    private val handler = CoroutineExceptionHandler { _, _ ->
-        _loadState.value = LoadState.ERROR
-    }
-
-    private val userName = MutableStateFlow("")
-    private var job: Job? = null
-
-    private val _profile = MutableSharedFlow<Profile>()
-    val profile = _profile.asSharedFlow()
-
-    private val _state = MutableStateFlow<ProfileState>(ProfileState.NotStartedYet)
+    private val _state = MutableStateFlow<ProfileState>(ProfileState.NotStarted)
     val state = _state.asStateFlow()
 
     fun getProfile() {
         viewModelScope.launch(Dispatchers.IO + handler) {
-            _loadState.value = LoadState.SUCCESS
+            stateLoad.value = LoadState.SUCCESS
             _state.value = ProfileState.Success(getProfileUseCase.execute())
         }
     }
@@ -52,7 +39,7 @@ class ProfileViewModel @Inject constructor(
     fun like(item: Photo) {
         viewModelScope.launch(Dispatchers.IO + handler) {
             photoLikeUseCase.execute(item)
-            _loadState.value = LoadState.SUCCESS
+            stateLoad.value = LoadState.SUCCESS
         }
     }
 
