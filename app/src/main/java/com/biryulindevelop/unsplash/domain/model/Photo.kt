@@ -1,7 +1,5 @@
 package com.biryulindevelop.unsplash.domain.model
 
-import com.biryulindevelop.unsplash.data.db.entity.PhotoEntity
-
 data class Photo(
     val id: String,
     val urlsSmall: String,
@@ -12,13 +10,4 @@ data class Photo(
     val userAvatar: String,
     val height: Int,
     val width: Int
-) {
-    fun toPhotoEntity() = PhotoEntity(
-        photoId = id,
-        smallUrls = urlsSmall,
-        likedByUser = likedByUser,
-        counterLikes = likes,
-        userName = userName,
-        profileImage = userAvatar
-    )
-}
+)

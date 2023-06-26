@@ -9,7 +9,7 @@ import com.biryulindevelop.unsplash.R
 import com.biryulindevelop.unsplash.application.ONBOARDING_SHOWN
 import com.biryulindevelop.unsplash.application.TOKEN_ENABLED
 import com.biryulindevelop.unsplash.application.TOKEN_NAME
-import com.biryulindevelop.unsplash.utils.SharedPreferencesUtils
+import com.biryulindevelop.unsplash.presentation.utils.SharedPreferencesUtils
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

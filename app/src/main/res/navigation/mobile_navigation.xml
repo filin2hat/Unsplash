@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_onboarding"
-        android:name="com.biryulindevelop.unsplash.presentation.onboarding.OnboardingFragment"
+        android:name="com.biryulindevelop.unsplash.presentation.screens.onboarding.OnboardingFragment"
         tools:layout="@layout/fragment_onboarding">
         <action
             android:id="@+id/action_navigation_onboarding_to_navigation_auth"
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/navigation_photos"
-        android:name="com.biryulindevelop.unsplash.presentation.photos.list.PhotosFragment"
+        android:name="com.biryulindevelop.unsplash.presentation.screens.photos.list.PhotosFragment"
         android:label="@string/title_photos"
         tools:layout="@layout/fragment_photos">
         <action
@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/navigation_digest"
-        android:name="com.biryulindevelop.unsplash.presentation.collections.DigestFragment"
+        android:name="com.biryulindevelop.unsplash.presentation.screens.collections.digest.DigestFragment"
         android:label="@string/title_collections"
         tools:layout="@layout/fragment_digest">
         <action
@@ -39,7 +39,7 @@
 
     <fragment
         android:id="@+id/navigation_user"
-        android:name="com.biryulindevelop.unsplash.presentation.user.ProfileFragment"
+        android:name="com.biryulindevelop.unsplash.presentation.screens.user.ProfileFragment"
         android:label="@string/title_user"
         tools:layout="@layout/fragment_profile">
         <action
@@ -54,7 +54,7 @@
 
     <fragment
         android:id="@+id/authFragment"
-        android:name="com.biryulindevelop.unsplash.presentation.authorization.AuthFragment"
+        android:name="com.biryulindevelop.unsplash.presentation.screens.authorization.AuthFragment"
         tools:layout="@layout/fragment_auth">
         <deepLink
             android:id="@+id/deepLink"
@@ -72,7 +72,7 @@
 
     <fragment
         android:id="@+id/navigation_photo_details"
-        android:name="com.biryulindevelop.unsplash.presentation.photos.details.OnePhotoDetailsFragment"
+        android:name="com.biryulindevelop.unsplash.presentation.screens.photos.details.OnePhotoDetailsFragment"
         tools:layout="@layout/fragment_one_photo_details">
         <argument
             android:name="photo_id"
@@ -83,7 +83,7 @@
     </fragment>
     <fragment
         android:id="@+id/digestDetailsFragment"
-        android:name="com.biryulindevelop.unsplash.presentation.collections.DigestDetailsFragment"
+        android:name="com.biryulindevelop.unsplash.presentation.screens.collections.details.DigestDetailsFragment"
         android:label="fragment_digest_details"
         tools:layout="@layout/fragment_digest_details">
         <argument

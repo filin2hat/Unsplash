@@ -5,7 +5,7 @@
     android:id="@+id/myCoordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.photos.details.OnePhotoDetailsFragment">
+    tools:context=".presentation.screens.photos.details.OnePhotoDetailsFragment">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"

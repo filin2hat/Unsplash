@@ -13,23 +13,24 @@ class DigestPagingSource @Inject constructor(
     override fun getRefreshKey(state: PagingState<Int, Digest>): Int = FIRST_PAGE
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Digest> {
-        val page = params.key ?: FIRST_PAGE
-        return kotlin.runCatching {
-            repository.getDigests(page)
+        val currentPage = params.key ?: FIRST_PAGE
+        return runCatching {
+            repository.getDigests(currentPage)
         }.fold(
-            onSuccess = {
+            onSuccess = { digests ->
                 LoadResult.Page(
-                    data = it,
-                    prevKey = null,
-                    nextKey = if (it.isEmpty()) null else page + 1
+                    data = digests,
+                    prevKey = if (currentPage == FIRST_PAGE) null else currentPage - 1,
+                    nextKey = if (digests.isEmpty()) null else currentPage + 1
                 )
-            }, onFailure = {
-                LoadResult.Error(it)
+            },
+            onFailure = { throwable ->
+                LoadResult.Error(throwable)
             }
         )
     }
 
-    private companion object {
+    companion object {
         private const val FIRST_PAGE = 1
     }
 }

@@ -21,14 +21,29 @@ data class PhotoEntity(
     @ColumnInfo(name = "user_avatar")
     val profileImage: String
 ) {
-    fun toPhoto() = Photo(
-        id = photoId,
-        urlsSmall = smallUrls,
-        likedByUser = likedByUser,
-        likes = counterLikes,
-        userName = userName,
-        userAvatar = profileImage,
-        height = 0,
-        width = 0
-    )
+    companion object {
+        fun fromPhoto(photo: Photo): PhotoEntity {
+            return PhotoEntity(
+                photoId = photo.id,
+                smallUrls = photo.urlsSmall,
+                likedByUser = photo.likedByUser,
+                counterLikes = photo.likes,
+                userName = photo.userName,
+                profileImage = photo.userAvatar
+            )
+        }
+
+        fun toPhoto(photoEntity: PhotoEntity): Photo {
+            return Photo(
+                id = photoEntity.photoId,
+                urlsSmall = photoEntity.smallUrls,
+                likedByUser = photoEntity.likedByUser,
+                likes = photoEntity.counterLikes,
+                userName = photoEntity.userName,
+                userAvatar = photoEntity.profileImage,
+                height = 0,
+                width = 0
+            )
+        }
+    }
 }
