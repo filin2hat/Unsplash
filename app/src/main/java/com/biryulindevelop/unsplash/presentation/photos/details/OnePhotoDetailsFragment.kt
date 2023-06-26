@@ -33,7 +33,7 @@ import com.biryulindevelop.unsplash.R
 import com.biryulindevelop.unsplash.data.state.LoadState
 import com.biryulindevelop.unsplash.databinding.FragmentOnePhotoDetailsBinding
 import com.biryulindevelop.unsplash.domain.model.PhotoDetails
-import com.biryulindevelop.unsplash.utils.loadImage
+import com.biryulindevelop.unsplash.utils.imgLoader
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -105,7 +105,7 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
 
     private fun updateUiOnServerResponse(loadState: LoadState) {
         if (loadState == LoadState.ERROR) {
-            with(binding){
+            with(binding) {
                 errorView.isVisible = true
                 scrollView.isVisible = false
             }
@@ -156,8 +156,8 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
 
     private fun bindUploadedImages(state: DetailsState.Success) {
         with(binding) {
-            photoImgView.loadImage(state.data.urls.regular)
-            authorAvatarImgView.loadImage(state.data.user.profileImage.small)
+            photoImgView.imgLoader(state.data.urls.regular)
+            authorAvatarImgView.imgLoader(state.data.user.profileImage.small)
         }
     }
 

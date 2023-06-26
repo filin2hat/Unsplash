@@ -17,7 +17,7 @@ import com.biryulindevelop.unsplash.data.state.LoadState
 import com.biryulindevelop.unsplash.databinding.FragmentDigestDetailsBinding
 import com.biryulindevelop.unsplash.domain.model.Photo
 import com.biryulindevelop.unsplash.presentation.photos.list.adapter.PhotoPagingAdapter
-import com.biryulindevelop.unsplash.utils.loadImage
+import com.biryulindevelop.unsplash.utils.imgLoader
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -94,7 +94,7 @@ class DigestDetailsFragment : Fragment(R.layout.fragment_digest_details) {
                             state.data.totalPhotos,
                             state.data.userUsername
                         )
-                    previewImgView.loadImage(state.data.previewPhoto)
+                    previewImgView.imgLoader(state.data.previewPhoto)
                 }
             }
         }
@@ -108,6 +108,7 @@ class DigestDetailsFragment : Fragment(R.layout.fragment_digest_details) {
                         item.id
                     )
                 )
+
             ClickableView.LIKE -> viewModel.like(item)
         }
     }

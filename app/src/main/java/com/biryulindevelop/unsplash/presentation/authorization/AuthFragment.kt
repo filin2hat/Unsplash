@@ -1,4 +1,4 @@
-package com.biryulindevelop.unsplash.presentation.auth
+package com.biryulindevelop.unsplash.presentation.authorization
 
 import android.content.Intent
 import android.content.SharedPreferences

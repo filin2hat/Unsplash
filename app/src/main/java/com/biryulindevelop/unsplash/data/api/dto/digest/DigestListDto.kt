@@ -1,8 +1,8 @@
 package com.biryulindevelop.unsplash.data.api.dto.digest
 
+import com.biryulindevelop.unsplash.data.utils.toListDigestTag
 import com.biryulindevelop.unsplash.domain.model.Digest
 import com.biryulindevelop.unsplash.domain.model.DigestTag
-import com.biryulindevelop.unsplash.utils.toListDigestTag
 import com.google.gson.annotations.SerializedName
 
 class DigestListDto : ArrayList<DigestDto>()

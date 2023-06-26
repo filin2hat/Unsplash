@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.biryulindevelop.unsplash.R
 import com.biryulindevelop.unsplash.databinding.DigestViewHolderBinding
 import com.biryulindevelop.unsplash.domain.model.Digest
-import com.biryulindevelop.unsplash.utils.loadImage
+import com.biryulindevelop.unsplash.utils.imgLoader
 
 class DigestViewHolder(private val binding: DigestViewHolderBinding) :
     RecyclerView.ViewHolder(binding.root) {
@@ -14,8 +14,8 @@ class DigestViewHolder(private val binding: DigestViewHolderBinding) :
             onClick(item)
         }
         with(binding) {
-            previewImgView.loadImage(item.previewPhoto)
-            authorAvatarImgView.loadImage(item.userProfileImage)
+            previewImgView.imgLoader(item.previewPhoto)
+            authorAvatarImgView.imgLoader(item.userProfileImage)
             authorNameTextView.text = item.userUsername
             totalPhotos.text =
                 itemView.context.resources.getQuantityString(

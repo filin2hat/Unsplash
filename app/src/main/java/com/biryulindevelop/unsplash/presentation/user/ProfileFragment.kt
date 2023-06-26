@@ -24,7 +24,7 @@ import com.biryulindevelop.unsplash.databinding.FragmentProfileBinding
 import com.biryulindevelop.unsplash.domain.model.Photo
 import com.biryulindevelop.unsplash.presentation.photos.list.adapter.PhotoPagingAdapter
 import com.biryulindevelop.unsplash.utils.SharedPreferencesUtils
-import com.biryulindevelop.unsplash.utils.loadImage
+import com.biryulindevelop.unsplash.utils.imgLoader
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -98,7 +98,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                     nameTextView.text = state.data.name
                     likesTextView.text =
                         getString(R.string.user_total_likes, state.data.totalLikes)
-                    avatarImgView.loadImage(state.data.avatar)
+                    avatarImgView.imgLoader(state.data.avatar)
                     location = state.data.location
                 }
             }

@@ -54,7 +54,7 @@
 
     <fragment
         android:id="@+id/authFragment"
-        android:name="com.biryulindevelop.unsplash.presentation.auth.AuthFragment"
+        android:name="com.biryulindevelop.unsplash.presentation.authorization.AuthFragment"
         tools:layout="@layout/fragment_auth">
         <deepLink
             android:id="@+id/deepLink"

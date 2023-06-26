@@ -1,4 +1,4 @@
-package com.biryulindevelop.unsplash.presentation.auth
+package com.biryulindevelop.unsplash.presentation.authorization
 
 import androidx.lifecycle.viewModelScope
 import com.biryulindevelop.unsplash.data.api.authentication.ApiToken

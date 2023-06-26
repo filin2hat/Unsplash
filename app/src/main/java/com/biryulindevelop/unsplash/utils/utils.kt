@@ -1,30 +1,17 @@
 package com.biryulindevelop.unsplash.utils
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.widget.ImageView
 import androidx.appcompat.widget.SearchView
 import com.biryulindevelop.unsplash.R
-import com.biryulindevelop.unsplash.data.api.dto.digest.DigestDto
-import com.biryulindevelop.unsplash.data.api.dto.photo.TagDto
-import com.biryulindevelop.unsplash.domain.model.Digest
-import com.biryulindevelop.unsplash.domain.model.DigestTag
-import com.biryulindevelop.unsplash.domain.model.Tags
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 
-inline fun <reified T, R> List<T>.toList(converter: (T) -> R): List<R> {
-    return this.map { item -> converter(item) }
-}
-
-fun List<TagDto>.toListTag(): List<Tags> {
-    return this.toList { it.toPhotoDetailsTags() }
-}
-
-fun List<DigestDto>.toListDigest(): List<Digest> {
-    return this.toList { it.toDigest() }
-}
-
-fun List<DigestDto.DigestTagDto>.toListDigestTag(): List<DigestTag> {
-    return this.toList { it.toDigestTag() }
+object SharedPreferencesUtils {
+    fun createSharedPrefs(context: Context, tokenName: String): SharedPreferences {
+        return context.getSharedPreferences(tokenName, Context.MODE_PRIVATE)
+    }
 }
 
 fun SearchView.setChangeTextListener(block: (query: String) -> Unit) {
@@ -40,7 +27,7 @@ fun SearchView.setChangeTextListener(block: (query: String) -> Unit) {
     })
 }
 
-fun ImageView.loadImage(urls: String) {
+fun ImageView.imgLoader(urls: String) {
     Glide.with(this)
         .load(urls)
         .error(R.drawable.baseline_error_24)
