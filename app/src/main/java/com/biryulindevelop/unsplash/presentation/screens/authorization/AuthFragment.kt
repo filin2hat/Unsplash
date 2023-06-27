@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -61,20 +62,17 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
                     LoadState.START ->
                         setLoadState(
                             buttonIsEnabled = true,
-                            textIsVisible = false,
                             progressIsVisible = false
                         )
 
                     LoadState.LOADING -> setLoadState(
                         buttonIsEnabled = false,
-                        textIsVisible = false,
                         progressIsVisible = true
                     )
 
                     LoadState.SUCCESS -> {
                         setLoadState(
                             buttonIsEnabled = false,
-                            textIsVisible = true,
                             progressIsVisible = false
                         )
                         findNavController().navigate(R.id.action_authFragment_to_navigation_photos)
@@ -83,10 +81,10 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
                     LoadState.ERROR -> {
                         setLoadState(
                             buttonIsEnabled = true,
-                            textIsVisible = true,
                             progressIsVisible = false
                         )
-                        binding.authTextView.text = loadState.message
+                        Toast.makeText(requireContext(), loadState.message, Toast.LENGTH_LONG)
+                            .show()
                     }
                 }
             }
@@ -95,12 +93,10 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
 
     private fun setLoadState(
         buttonIsEnabled: Boolean,
-        textIsVisible: Boolean,
         progressIsVisible: Boolean
     ) {
         with(binding) {
             btnAuth.isEnabled = buttonIsEnabled
-            authTextView.isVisible = textIsVisible
             progressBar.isVisible = progressIsVisible
         }
     }
