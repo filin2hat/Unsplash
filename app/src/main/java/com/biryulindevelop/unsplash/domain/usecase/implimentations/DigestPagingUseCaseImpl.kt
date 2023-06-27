@@ -13,7 +13,7 @@ class DigestPagingUseCaseImpl @Inject constructor(
 ) : DigestPagingUseCase {
     override fun execute(): Pager<Int, Digest> {
         return Pager(
-            config = PagingConfig(pageSize = 25, enablePlaceholders = false),
+            config = PagingConfig(pageSize = 7, enablePlaceholders = false),
             pagingSourceFactory = { DigestPagingSource(repository) }
         )
     }

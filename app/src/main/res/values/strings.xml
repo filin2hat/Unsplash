@@ -5,8 +5,8 @@
     <string name="title_user">User</string>
     <string-array name="onboarding_texts_array">
         <item>Make photo, publish, gather an audience, get feedback!</item>
-        <item>Share with friends, make collections</item>
-        <item>Upload your favorite pictures and track statistics</item>
+        <item>Share with friends, make collections!</item>
+        <item>Upload your favorite pictures and track statistics!</item>
     </string-array>
     <string name="go_straight_to_authorization">Skip</string>
     <string name="login_via_unsplash">Login via Unsplash</string>
@@ -53,4 +53,5 @@
     </plurals>
     <string name="no_location">No location data for this photo</string>
     <string name="one_photo_fragment_title">Photo Details</string>
+    <string name="onboarding_button_text_next">next</string>
 </resources>
