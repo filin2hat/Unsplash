@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container"
     android:layout_width="match_parent"
+    android:background="@color/unsplash_dark_gray"
     android:layout_height="match_parent">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -10,6 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground"
+        app:itemBackground="@color/light_grey"
         app:itemIconTint="@color/button_nav_selector"
         app:itemTextColor="@color/button_nav_selector"
         app:layout_constraintBottom_toBottomOf="parent"

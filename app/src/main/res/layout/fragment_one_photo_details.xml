@@ -155,13 +155,13 @@
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
-                    android:layout_height="110dp"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/exif_text_view"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
                         android:layout_marginTop="@dimen/common_spacing_small"
                         android:lineSpacingExtra="2sp"
@@ -178,8 +178,8 @@
                             android:id="@+id/about_author_text_view"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="@dimen/common_spacing_small"
                             android:layout_marginStart="@dimen/common_spacing_small"
+                            android:layout_marginTop="@dimen/common_spacing_small"
                             android:layout_marginEnd="8dp"
                             android:lineSpacingExtra="2sp"
                             android:textAlignment="textStart"
@@ -189,29 +189,29 @@
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="204dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="@dimen/common_spacing_small"
                     android:layout_marginEnd="32dp">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/downloads_count_text_view"
-                        android:layout_width="170dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:textAlignment="textEnd"
+                        android:layout_marginEnd="@dimen/common_spacing_small"
+                        android:layout_marginBottom="@dimen/common_spacing_small"
                         android:textColor="@color/white"
-                        android:textSize="18sp"
-                        tools:text="55555" />
+                        android:layout_gravity="top"
+                        android:textSize="16sp"
+                        tools:text="Downloads: 55555" />
 
                     <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/download_button"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="bottom|start"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
                         android:backgroundTint="#00FFFFFF"
-                        app:srcCompat="@drawable/download_line"
-                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        app:srcCompat="@drawable/download_line" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
         </ScrollView>
