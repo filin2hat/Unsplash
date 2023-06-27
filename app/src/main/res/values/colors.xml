@@ -12,4 +12,5 @@
     <color name="light_grey">#DADADA</color>
     <color name="transparent_black">#BA000000</color>
     <color name="error_red">#F63F3F</color>
+    <color name="unsplash_dark_gray">#4F5055</color>
 </resources>
