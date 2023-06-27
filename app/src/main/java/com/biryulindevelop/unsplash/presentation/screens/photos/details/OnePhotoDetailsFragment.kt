@@ -63,7 +63,7 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
             ).show()
             enableDownloadFlag = true
         } else {
-            showMissingPermissionAlert()
+            missingPermissionAlert()
         }
     }
 
@@ -71,8 +71,8 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.loadPhotoDetails(args.photoId)
         getLoadingState()
-        setLocationClick()
-        loadStateLike()
+        locationClick()
+        stateLike()
     }
 
     override fun onResume() {
@@ -85,9 +85,9 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
                     viewModel.getDMStatus(downloadManager)
                     if (viewModel.success) {
                         val uri = downloadManager.getUriForDownloadedFile(viewModel.downloadID)
-                        showSuccessfulDownloadMsg(uri)
+                        successfulDownloadMsg(uri)
                     } else {
-                        showFailedDownloadMsg()
+                        failedDownloadMsg()
                     }
                 }
             }
@@ -120,12 +120,12 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
                     when (state) {
                         OnePhotoDetailsState.NotStarted -> {}
                         is OnePhotoDetailsState.Success -> {
-                            bindUploadedTexts(state)
-                            bindUploadedImages(state)
-                            setUploadedLocation(state)
-                            setToolbar(state.data.id)
-                            setLikeClick(state.data)
-                            setDownloadOnClick(state.data.urls.raw, downloadManager)
+                            uploadedTexts(state)
+                            uploadedImages(state)
+                            uploadedLocation(state)
+                            toolbar(state.data.id)
+                            likeClick(state.data)
+                            downloadOnClick(state.data.urls.raw, downloadManager)
                         }
                     }
                 }
@@ -134,7 +134,7 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
     }
 
     @SuppressLint("StringFormatMatches")
-    private fun bindUploadedTexts(state: OnePhotoDetailsState.Success) {
+    private fun uploadedTexts(state: OnePhotoDetailsState.Success) {
         with(binding) {
             authorNameTextView.text = state.data.user.name
             authorAccountTextView.text =
@@ -145,7 +145,7 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
             tagsTextView.text = state.data.tags.joinToString { tag ->
                 "#${tag.title ?: "N/A"}"
             }
-            exifTextView.text = buildExifText(state)
+            exifTextView.text = exifText(state)
             aboutAuthorTextView.text = getString(
                 R.string.about, state.data.user.username, state.data.user.bio ?: "N/A"
             )
@@ -154,36 +154,36 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
         }
     }
 
-    private fun bindUploadedImages(state: OnePhotoDetailsState.Success) {
+    private fun uploadedImages(state: OnePhotoDetailsState.Success) {
         with(binding) {
             photoImgView.imgLoader(state.data.urls.regular)
             authorAvatarImgView.imgLoader(state.data.user.profileImage.small)
         }
     }
 
-    private fun setUploadedLocation(state: OnePhotoDetailsState.Success) {
+    private fun uploadedLocation(state: OnePhotoDetailsState.Success) {
         if (state.data.location.position.latitude != null && state.data.location.position.longitude != null) {
             lat = state.data.location.position.latitude
             lon = state.data.location.position.longitude
         }
     }
 
-    private fun setLocationClick() {
+    private fun locationClick() {
         binding.locationView.setOnClickListener {
             Log.d(TAG, "lat $lat\nlon $lon ")
             if (lat != null && lon != null) {
                 if (lat != 0.0 && lon != 0.0) {
                     Log.d(TAG, "open map")
-                    showLocationOnMap(Uri.parse("geo: $lat,$lon"))
+                    locationOnMap(Uri.parse("geo: $lat,$lon"))
                 }
             } else {
                 Log.d(TAG, "don't open map")
-                showNoLocationMsg()
+                noLocationMsg()
             }
         }
     }
 
-    private fun loadStateLike() {
+    private fun stateLike() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.loadState.collect { loadStateLike ->
                 binding.errorView.isVisible =
@@ -192,7 +192,7 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
         }
     }
 
-    private fun setDownloadOnClick(url: String, downloadManager: DownloadManager) {
+    private fun downloadOnClick(url: String, downloadManager: DownloadManager) {
         binding.downloadButton.setOnClickListener {
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
                 viewModel.startDownLoad(url, downloadManager)
@@ -205,7 +205,7 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
         }
     }
 
-    private fun showSuccessfulDownloadMsg(uri: Uri) {
+    private fun successfulDownloadMsg(uri: Uri) {
         val mySnackbar = Snackbar.make(
             binding.myCoordinatorLayout,
             getString(R.string.download_finished),
@@ -223,7 +223,7 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
         mySnackbar.show()
     }
 
-    private fun showFailedDownloadMsg() {
+    private fun failedDownloadMsg() {
         Snackbar.make(
             binding.myCoordinatorLayout,
             getString(R.string.failed_download),
@@ -231,13 +231,13 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
         ).show()
     }
 
-    private fun setLikeClick(photo: PhotoDetails) {
+    private fun likeClick(photo: PhotoDetails) {
         binding.isLikedButtonView.setOnClickListener {
             viewModel.like(photo)
         }
     }
 
-    private fun buildExifText(state: OnePhotoDetailsState.Success): String {
+    private fun exifText(state: OnePhotoDetailsState.Success): String {
         return buildString {
             append(getString(R.string.made_with, state.data.exif.make ?: "N/A"))
             append(getString(R.string.model, state.data.exif.model ?: "N/A"))
@@ -248,14 +248,14 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
         }
     }
 
-    private fun showLocationOnMap(locationUri: Uri) {
+    private fun locationOnMap(locationUri: Uri) {
         val intent = Intent(Intent.ACTION_VIEW).apply {
             data = locationUri
         }
         startActivity(intent)
     }
 
-    private fun showNoLocationMsg() {
+    private fun noLocationMsg() {
         Snackbar.make(
             binding.myCoordinatorLayout,
             getString(R.string.no_location),
@@ -263,7 +263,7 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
         ).show()
     }
 
-    private fun setToolbar(id: String) {
+    private fun toolbar(id: String) {
         val button = binding.shareBarView.menu.getItem(0)
         button?.setOnMenuItemClickListener {
             sharePhoto(id)
@@ -290,7 +290,7 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
         }
     }
 
-    private fun showMissingPermissionAlert() {
+    private fun missingPermissionAlert() {
         val alertDialog = AlertDialog.Builder(requireContext()).create()
         alertDialog.setTitle(getString(R.string.alert_title))
         alertDialog.setMessage(getString(R.string.alert_text))
