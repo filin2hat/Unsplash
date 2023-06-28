@@ -57,20 +57,24 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
         }
     }
 
+    private fun checkPermission() {
+        if (ContextCompat.checkSelfPermission(
+                requireActivity(),
+                WRITE_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            TODO("Not yet implemented")
+        } else {
+            launcher.launch(arrayOf(WRITE_EXTERNAL_STORAGE))
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.loadPhotoDetails(args.photoId)
         getLoadingState()
         locationClick()
         stateLike()
-    }
-
-    private fun failedDownloadMsg() {
-        TODO("Not yet implemented")
-    }
-
-    private fun successfulDownloadMsg(uri: Uri?) {
-        TODO("Not yet implemented")
     }
 
     private fun getLoadingState() {
@@ -103,7 +107,7 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
                             uploadedLocation(state)
                             toolbar(state.data.id)
                             likeClick(state.data)
-                            downloadOnClick(state.data.urls.raw)
+                           // downloadOnClick(state.data.urls.raw)
                         }
                     }
                 }
@@ -112,6 +116,14 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
     }
 
     private fun downloadOnClick(raw: String) {
+        TODO("Not yet implemented")
+    }
+
+    private fun failedDownloadMsg() {
+        TODO("Not yet implemented")
+    }
+
+    private fun successfulDownloadMsg(uri: Uri?) {
         TODO("Not yet implemented")
     }
 
@@ -222,18 +234,6 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
         startActivity(Intent.createChooser(sharingIntent, getString(R.string.share)))
     }
 
-    private fun checkPermission() {
-        if (ContextCompat.checkSelfPermission(
-                requireActivity(),
-                WRITE_EXTERNAL_STORAGE
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
-            TODO("Not yet implemented")
-        } else {
-            launcher.launch(arrayOf(WRITE_EXTERNAL_STORAGE))
-        }
-    }
-
     private fun missingPermissionAlert() {
         val alertDialog = AlertDialog.Builder(requireContext()).create()
         alertDialog.setTitle(getString(R.string.alert_title))
@@ -246,10 +246,5 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
             dialog.cancel()
         }
         alertDialog.show()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        requireContext().unregisterReceiver(receiver)
     }
 }
