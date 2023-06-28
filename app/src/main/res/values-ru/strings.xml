@@ -56,4 +56,5 @@
     <string name="one_photo_fragment_title">Фотография</string>
     <string name="onboarding_button_text_next">далее</string>
     <string name="download_started">Загрузка началась</string>
+    <string name="not_specified">не указан</string>
 </resources>

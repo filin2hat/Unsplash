@@ -92,8 +92,8 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 with(binding) {
                     locationView.isEnabled = true
                     viewModel.setUsername(state.data.userName) { adapter.refresh() }
-                    locationTextView.text = state.data.location
-                    if (state.data.location == null) binding.locationLayout.visibility = View.GONE
+                    locationTextView.text = state.data.location ?: getString(R.string.not_specified)
+                    userEmailTextView.text = getString(R.string.not_specified)
                     userNameTextView.text = state.data.userName
                     nameTextView.text = state.data.name
                     likesTextView.text =

@@ -21,7 +21,8 @@
         app:tabBackground="@drawable/ic_ellipse"
         app:tabIndicator="@drawable/ic_tab_selector"
         app:tabIndicatorAnimationMode="elastic"
-        app:tabIndicatorHeight="@dimen/common_spacing_medium" />
+        app:tabIndicatorHeight="@dimen/common_spacing_medium"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/cameras_image"
@@ -58,15 +59,15 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/authorize_button"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="48dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/unsplash_green"
         android:text="@string/go_straight_to_authorization"
-        android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textColor="@color/unsplash_dark_gray"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5" />
+        tools:text="@string/go_straight_to_authorization" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

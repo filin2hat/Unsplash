@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Unsplash</string>
+    <string name="app_name" translatable="false">Unsplasher</string>
     <string name="title_photos">Photos</string>
     <string name="title_collections">Collections</string>
     <string name="title_user">User</string>
@@ -24,7 +24,7 @@
     <string name="alert_text">
         Permission required to save the photo to your device
     </string>
-    <string name="search_hint">Search images...</string>
+    <string name="search_hint">Search images…</string>
     <string name="no_connection">Check the network connection</string>
     <string name="logout">Logout</string>
     <string name="download_finished">Download finished</string>
@@ -43,7 +43,7 @@
     <string name="logout_message">All local data will be deleted.</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="author_account" translatable="false">\@%1$s</string>
     <string name="search_menu_title">Search</string>
     <string name="share">Share</string>
@@ -55,4 +55,5 @@
     <string name="one_photo_fragment_title">Photo Details</string>
     <string name="onboarding_button_text_next">next</string>
     <string name="download_started">Download started</string>
+    <string name="not_specified">not specified</string>
 </resources>
