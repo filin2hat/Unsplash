@@ -1,11 +1,15 @@
 package com.biryulindevelop.unsplash.application
 
 const val REDIRECT_URI = "urn:ietf:wg:oauth:2.0:oob"
+
+const val ACCESS_KEY = "0mWlk4H1JqeVUaZ0S136G2DkDB8N6poiRRNDXIdAsoM"
+const val SECRET_KEY = "6jPzllGr2RxoPQ9daKVVhTFJtQswY50Ley6YxjEKYCw"
+
 //const val ACCESS_KEY = "JldYVfpRuY9czIZ7Ye2hISDxZkVear9kx-CjRPdyZb0"
 //const val SECRET_KEY = "AQRrx_yDpkfjVazKVZIFbp4LlSoi-vzhCMAMy3hFiCM"
 
-const val ACCESS_KEY = "5bSR9PSHmHMrwe0hm3Lu2pa7uTtx-pG49Kf-l2lKHNQ"
-const val SECRET_KEY = "cN2oXv9VpzFjJge_X2rEFlYH4qSRunvSzAYSMHoCSBI"
+//const val ACCESS_KEY = "5bSR9PSHmHMrwe0hm3Lu2pa7uTtx-pG49Kf-l2lKHNQ"
+//const val SECRET_KEY = "cN2oXv9VpzFjJge_X2rEFlYH4qSRunvSzAYSMHoCSBI"
 
 const val TOKEN_NAME = "name_token"
 const val TOKEN_KEY = "key_token"

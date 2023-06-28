@@ -40,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/unsplash_green"
-            android:imeOptions="actionDone"
+            android:imeOptions="actionSearch"
             app:menu="@menu/search_menu"
             app:title="@string/title_photos" />
 

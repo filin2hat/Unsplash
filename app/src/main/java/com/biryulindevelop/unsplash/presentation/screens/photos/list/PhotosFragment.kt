@@ -2,6 +2,7 @@ package com.biryulindevelop.unsplash.presentation.screens.photos.list
 
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -58,9 +59,19 @@ class PhotosFragment : Fragment(R.layout.fragment_photos) {
 
     private fun setSearchView() {
         val searchView = binding.searchBarView.menu.getItem(0).actionView as SearchView
-        searchView.setChangeTextListener { query ->
-            viewModel.setQuery(query) { adapter.refresh() }
-        }
+        searchView.imeOptions = EditorInfo.IME_ACTION_DONE // Установка опции ввода/отправки запроса
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                // Выполнение действия при нажатии на кнопку "Готово"
+                viewModel.setQuery(query) { adapter.refresh() }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                // Обработка изменений текста поискового запроса
+                return false
+            }
+        })
     }
 
     private fun settingAdapter() {
