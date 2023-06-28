@@ -55,4 +55,5 @@
     <string name="no_location">Для этой фотографии нет данных о местоположении</string>
     <string name="one_photo_fragment_title">Фотография</string>
     <string name="onboarding_button_text_next">далее</string>
+    <string name="download_started">Загрузка началась</string>
 </resources>
