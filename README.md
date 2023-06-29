@@ -1,6 +1,6 @@
 # Unsplasher
 
-### English:
+#### English:
 
 ## General Project Description:
 
@@ -27,11 +27,10 @@ for discovering and downloading stunning photographs for personal or commercial 
 - Testing: JUnit and Espresso are used for unit and UI testing respectively, ensuring the
   reliability and quality of the app.
 
-## Important:
+### Important:
 
-### Downloaded - install 🌟
-
-### For the application to work, you must:
+#### Downloaded - press 🌟
+#### For the application to work, you must:
 
 - register an account on Unsplash
 - on the site, in the developer console, create an application, indicating all available scopes
@@ -40,7 +39,7 @@ for discovering and downloading stunning photographs for personal or commercial 
   const val ACCESS_KEY = "Access Key"
   const val SECRET_KEY = "Secret key"
 
-### Русский:
+#### Русский:
 
 ## Общее описание проекта:
 
@@ -70,15 +69,15 @@ Unsplasher - это мобильное приложение, которое по
 - Тестирование: JUnit и Espresso используются для модульного и UI-тестирования соответственно,
   обеспечивая надежность и качество приложения.
 
-## Важно:
+### Важно:
 
-### Скачал - поставь 🌟
+#### Скачал - поставь 🌟
 
-### Для работы приложения необходимо:
+#### Для работы приложения необходимо:
 
 - зарегистрировать аккаунт на Unsplash
 - на сайте, в консоли разработчика создать приложение, с указанем всех доступных скоупов
   (https://unsplash.com/oauth/applications)
 - полученые ключи прописать в ApphConst.kt:
-  const val ACCESS_KEY = "Access Key"
-  const val SECRET_KEY = "Secret key"
+- const val ACCESS_KEY = "Access Key"
+- const val SECRET_KEY = "Secret key"
