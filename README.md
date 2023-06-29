@@ -39,6 +39,8 @@ for discovering and downloading stunning photographs for personal or commercial 
   const val ACCESS_KEY = "Access Key"
   const val SECRET_KEY = "Secret key"
 
+
+
 #### Русский:
 
 ## Общее описание проекта:
