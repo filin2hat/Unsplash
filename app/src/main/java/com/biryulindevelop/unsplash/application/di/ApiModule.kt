@@ -1,14 +1,14 @@
 package com.biryulindevelop.unsplash.application.di
 
 import android.content.Context
-import com.biryulindevelop.unsplash.data.api.ApiDigest
-import com.biryulindevelop.unsplash.data.api.ApiPhotos
-import com.biryulindevelop.unsplash.data.api.ApiProfile
-import com.biryulindevelop.unsplash.data.api.authentication.ApiToken
-import com.biryulindevelop.unsplash.data.api.authentication.AuthTokenProvider
-import com.biryulindevelop.unsplash.data.api.authentication.interceptor.AuthTokenInterceptor
-import com.biryulindevelop.unsplash.data.api.authentication.interceptor.AuthTokenInterceptorQualifier
-import com.biryulindevelop.unsplash.data.api.authentication.interceptor.LoggingInterceptorQualifier
+import com.biryulindevelop.data.api.ApiDigest
+import com.biryulindevelop.data.api.ApiPhotos
+import com.biryulindevelop.data.api.ApiProfile
+import com.biryulindevelop.data.api.authentication.ApiToken
+import com.biryulindevelop.data.api.authentication.AuthTokenProvider
+import com.biryulindevelop.data.api.authentication.interceptor.AuthTokenInterceptor
+import com.biryulindevelop.data.api.authentication.interceptor.AuthTokenInterceptorQualifier
+import com.biryulindevelop.data.api.authentication.interceptor.LoggingInterceptorQualifier
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

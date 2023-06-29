@@ -8,9 +8,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.biryulindevelop.domain.model.Digest
 import com.biryulindevelop.unsplash.R
 import com.biryulindevelop.unsplash.databinding.FragmentDigestBinding
-import com.biryulindevelop.unsplash.domain.model.Digest
 import com.biryulindevelop.unsplash.presentation.screens.collections.digest.adapter.DigestPagingAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

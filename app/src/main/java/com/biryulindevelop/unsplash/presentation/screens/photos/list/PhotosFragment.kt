@@ -10,11 +10,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.biryulindevelop.domain.model.Photo
+import com.biryulindevelop.domain.state.ClickableView
+import com.biryulindevelop.domain.state.LoadState
 import com.biryulindevelop.unsplash.R
 import com.biryulindevelop.unsplash.databinding.FragmentPhotosBinding
-import com.biryulindevelop.unsplash.domain.model.Photo
-import com.biryulindevelop.unsplash.domain.state.ClickableView
-import com.biryulindevelop.unsplash.domain.state.LoadState
 import com.biryulindevelop.unsplash.presentation.screens.photos.list.adapter.PhotoPagingAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

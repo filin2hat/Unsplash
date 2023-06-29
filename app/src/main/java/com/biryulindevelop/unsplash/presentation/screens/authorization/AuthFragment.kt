@@ -13,13 +13,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.biryulindevelop.domain.state.LoadState
 import com.biryulindevelop.unsplash.R
-import com.biryulindevelop.unsplash.application.REQUEST
-import com.biryulindevelop.unsplash.application.TOKEN_ENABLED
-import com.biryulindevelop.unsplash.application.TOKEN_KEY
-import com.biryulindevelop.unsplash.application.TOKEN_NAME
 import com.biryulindevelop.unsplash.databinding.FragmentAuthBinding
-import com.biryulindevelop.unsplash.domain.state.LoadState
 import com.biryulindevelop.unsplash.presentation.utils.SharedPreferencesUtils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -34,14 +30,19 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         startAuth()
-        tokenObserve(SharedPreferencesUtils.createSharedPrefs(requireContext(), TOKEN_NAME))
+        tokenObserve(
+            SharedPreferencesUtils.createSharedPrefs(
+                requireContext(),
+                com.biryulindevelop.common.TOKEN_NAME
+            )
+        )
         loadingObserve()
         viewModel.createToken(args.code)
     }
 
     private fun startAuth() {
         binding.btnAuth.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(REQUEST))
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(com.biryulindevelop.common.REQUEST))
             startActivity(intent)
         }
     }
@@ -49,8 +50,9 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
     private fun tokenObserve(preferences: SharedPreferences) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.token.collect { token ->
-                preferences.edit().putString(TOKEN_KEY, token).apply()
-                preferences.edit().putBoolean(TOKEN_ENABLED, true).apply()
+                preferences.edit().putString(com.biryulindevelop.common.TOKEN_KEY, token).apply()
+                preferences.edit().putBoolean(com.biryulindevelop.common.TOKEN_ENABLED, true)
+                    .apply()
             }
         }
     }

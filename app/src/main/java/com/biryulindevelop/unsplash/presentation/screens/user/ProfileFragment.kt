@@ -14,15 +14,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.biryulindevelop.domain.model.Photo
+import com.biryulindevelop.domain.state.ClickableView
+import com.biryulindevelop.domain.state.LoadState
+import com.biryulindevelop.domain.state.ProfileState
 import com.biryulindevelop.unsplash.R
-import com.biryulindevelop.unsplash.application.TOKEN_ENABLED
-import com.biryulindevelop.unsplash.application.TOKEN_KEY
-import com.biryulindevelop.unsplash.application.TOKEN_NAME
 import com.biryulindevelop.unsplash.databinding.FragmentProfileBinding
-import com.biryulindevelop.unsplash.domain.model.Photo
-import com.biryulindevelop.unsplash.domain.state.ClickableView
-import com.biryulindevelop.unsplash.domain.state.LoadState
-import com.biryulindevelop.unsplash.domain.state.ProfileState
 import com.biryulindevelop.unsplash.presentation.screens.photos.list.adapter.PhotoPagingAdapter
 import com.biryulindevelop.unsplash.presentation.utils.SharedPreferencesUtils
 import com.biryulindevelop.unsplash.presentation.utils.imgLoader
@@ -50,7 +47,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         settingAdapter()
         refresher()
         setLocationClick()
-        setupLogoutButton(SharedPreferencesUtils.createSharedPrefs(requireContext(), TOKEN_NAME))
+        setupLogoutButton(
+            SharedPreferencesUtils.createSharedPrefs(
+                requireContext(),
+                com.biryulindevelop.common.TOKEN_NAME
+            )
+        )
     }
 
     private fun getLikedPhotos() {
@@ -184,8 +186,9 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         dialog.setTitle(R.string.logout_title)
             .setMessage(R.string.logout_message)
             .setPositiveButton(R.string.yes) { _, _ ->
-                preferences.edit().putString(TOKEN_KEY, "").apply()
-                preferences.edit().putBoolean(TOKEN_ENABLED, false).apply()
+                preferences.edit().putString(com.biryulindevelop.common.TOKEN_KEY, "").apply()
+                preferences.edit().putBoolean(com.biryulindevelop.common.TOKEN_ENABLED, false)
+                    .apply()
                 val action = ProfileFragmentDirections.actionNavigationUserToAuthFragment()
                 findNavController().navigate(action)
             }

@@ -3,8 +3,8 @@ package com.biryulindevelop.unsplash.presentation.screens.collections.digest.ada
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
+import com.biryulindevelop.domain.model.Digest
 import com.biryulindevelop.unsplash.databinding.DigestViewHolderBinding
-import com.biryulindevelop.unsplash.domain.model.Digest
 
 class DigestPagingAdapter(
     private val onClick: (Digest) -> Unit,

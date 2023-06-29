@@ -6,8 +6,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.biryulindevelop.unsplash.R
-import com.biryulindevelop.unsplash.application.ONBOARDING_SHOWN
-import com.biryulindevelop.unsplash.application.TOKEN_NAME
 import com.biryulindevelop.unsplash.databinding.FragmentOnboardingBinding
 import com.biryulindevelop.unsplash.presentation.utils.SharedPreferencesUtils
 import com.google.android.material.tabs.TabLayout
@@ -64,8 +62,11 @@ class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
     }
 
     private fun saveOnboardingShown() {
-        val prefs = SharedPreferencesUtils.createSharedPrefs(requireContext(), TOKEN_NAME)
-        prefs.edit().putBoolean(ONBOARDING_SHOWN, true).apply()
+        val prefs = SharedPreferencesUtils.createSharedPrefs(
+            requireContext(),
+            com.biryulindevelop.common.TOKEN_NAME
+        )
+        prefs.edit().putBoolean(com.biryulindevelop.common.ONBOARDING_SHOWN, true).apply()
     }
 
     override fun onDestroyView() {

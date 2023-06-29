@@ -1,15 +1,16 @@
 package com.biryulindevelop.unsplash.application.di
 
-import com.biryulindevelop.unsplash.data.repository.DigestRemoteRepositoryImpl
-import com.biryulindevelop.unsplash.data.repository.LocalRepositoryImpl
-import com.biryulindevelop.unsplash.data.repository.PhotoRemoteRepositoryImpl
-import com.biryulindevelop.unsplash.data.repository.PhotosPagingSourceRepositoryImpl
-import com.biryulindevelop.unsplash.data.repository.ProfileRemoteRepositoryImpl
-import com.biryulindevelop.unsplash.domain.repository.DigestRemoteRepository
-import com.biryulindevelop.unsplash.domain.repository.LocalRepository
-import com.biryulindevelop.unsplash.domain.repository.PhotoRemoteRepository
-import com.biryulindevelop.unsplash.domain.repository.PhotosPagingSourceRepository
-import com.biryulindevelop.unsplash.domain.repository.ProfileRemoteRepository
+
+import com.biryulindevelop.data.repository.DigestRemoteRepositoryImpl
+import com.biryulindevelop.data.repository.LocalRepositoryImpl
+import com.biryulindevelop.data.repository.PhotoRemoteRepositoryImpl
+import com.biryulindevelop.data.repository.PhotosPagingSourceRepositoryImpl
+import com.biryulindevelop.data.repository.ProfileRemoteRepositoryImpl
+import com.biryulindevelop.domain.repository.DigestRemoteRepository
+import com.biryulindevelop.domain.repository.LocalRepository
+import com.biryulindevelop.domain.repository.PhotoRemoteRepository
+import com.biryulindevelop.domain.repository.PhotosPagingSourceRepository
+import com.biryulindevelop.domain.repository.ProfileRemoteRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

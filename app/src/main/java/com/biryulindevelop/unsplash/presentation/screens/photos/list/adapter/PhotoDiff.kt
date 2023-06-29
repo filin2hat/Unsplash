@@ -1,7 +1,7 @@
 package com.biryulindevelop.unsplash.presentation.screens.photos.list.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.biryulindevelop.unsplash.domain.model.Photo
+import com.biryulindevelop.domain.model.Photo
 
 class PhotoDiff : DiffUtil.ItemCallback<Photo>() {
 

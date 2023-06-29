@@ -3,9 +3,9 @@ package com.biryulindevelop.unsplash.presentation.screens.photos.list.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
+import com.biryulindevelop.domain.model.Photo
+import com.biryulindevelop.domain.state.ClickableView
 import com.biryulindevelop.unsplash.databinding.PhotoViewHolderBinding
-import com.biryulindevelop.unsplash.domain.model.Photo
-import com.biryulindevelop.unsplash.domain.state.ClickableView
 
 class PhotoPagingAdapter(
     private val onClick: (ClickableView, Photo) -> Unit

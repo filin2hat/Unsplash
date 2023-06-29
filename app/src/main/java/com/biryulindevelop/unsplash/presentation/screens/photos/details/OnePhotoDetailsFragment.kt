@@ -27,11 +27,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.biryulindevelop.domain.model.PhotoDetails
+import com.biryulindevelop.domain.state.LoadState
+import com.biryulindevelop.domain.state.OnePhotoDetailsState
 import com.biryulindevelop.unsplash.R
 import com.biryulindevelop.unsplash.databinding.FragmentOnePhotoDetailsBinding
-import com.biryulindevelop.unsplash.domain.model.PhotoDetails
-import com.biryulindevelop.unsplash.domain.state.LoadState
-import com.biryulindevelop.unsplash.domain.state.OnePhotoDetailsState
 import com.biryulindevelop.unsplash.presentation.utils.imgLoader
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint

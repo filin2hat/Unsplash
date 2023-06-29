@@ -1,9 +1,9 @@
 package com.biryulindevelop.unsplash.presentation.screens.collections.digest.adapter
 
 import androidx.recyclerview.widget.RecyclerView
+import com.biryulindevelop.domain.model.Digest
 import com.biryulindevelop.unsplash.R
 import com.biryulindevelop.unsplash.databinding.DigestViewHolderBinding
-import com.biryulindevelop.unsplash.domain.model.Digest
 import com.biryulindevelop.unsplash.presentation.utils.imgLoader
 
 class DigestViewHolder(

@@ -43,9 +43,6 @@ android {
             renderscriptOptimLevel 3
             minifyEnabled false
         }
-//        tasks.withType(JavaCompile).all {
-//            options.compilerArgs.add("-Xlint:all")
-//        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
@@ -60,6 +57,10 @@ android {
 }
 
 dependencies {
+    //modules
+    implementation project(':data')
+    implementation project(':domain')
+    implementation project(':common')
 
     //android
     implementation 'androidx.core:core-ktx:1.10.1'
@@ -69,8 +70,20 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.annotation:annotation:1.6.0'
 
+    //room
+    def roomVersion = "2.5.2"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+
     //view binding delegate
     implementation 'com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.9'
+
+    //OkHttp
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.6'
+
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     //lifecycle
     def lifecycle_version = "2.6.1"
@@ -91,27 +104,13 @@ dependencies {
     implementation 'androidx.paging:paging-runtime:3.1.1'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
-    //OkHttp
-    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.6'
-
-    //room
-    def roomVersion = "2.5.2"
-    implementation "androidx.room:room-runtime:$roomVersion"
-    implementation "androidx.room:room-ktx:$roomVersion"
-    implementation "androidx.room:room-paging:$roomVersion"
-    kapt "androidx.room:room-compiler:$roomVersion"
-
-    //retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-
-    //gson
-    implementation 'com.google.code.gson:gson:2.10.1'
-
     //hilt
     def hiltVersion = "2.46.1"
     implementation "com.google.dagger:hilt-android:$hiltVersion"
     kapt "com.google.dagger:hilt-android-compiler:$hiltVersion"
+
+    //gson
+    implementation 'com.google.code.gson:gson:2.10.1'
 
     //glide
     implementation 'com.github.bumptech.glide:glide:4.15.1'

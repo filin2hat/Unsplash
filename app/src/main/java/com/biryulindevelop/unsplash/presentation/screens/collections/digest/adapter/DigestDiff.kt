@@ -1,7 +1,7 @@
 package com.biryulindevelop.unsplash.presentation.screens.collections.digest.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.biryulindevelop.unsplash.domain.model.Digest
+import com.biryulindevelop.domain.model.Digest
 
 class DigestDiff : DiffUtil.ItemCallback<Digest>() {
 
