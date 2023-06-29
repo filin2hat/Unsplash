@@ -56,68 +56,59 @@ android {
     }
 }
 
+apply from: rootProject.file('dependencies.gradle')
+
 dependencies {
     //modules
     implementation project(':data')
     implementation project(':domain')
     implementation project(':common')
 
-    //android
-    implementation 'androidx.core:core-ktx:1.10.1'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.annotation:annotation:1.6.0'
-
+    //kotlin
+    implementation libs.coreKtx
+    //android ui
+    implementation libs.appCompat
+    implementation libs.material
+    implementation libs.constraintLayout
+    implementation libs.legasySupport
+    //annotation
+    implementation libs.annotation
     //room
-    def roomVersion = "2.5.2"
-    implementation "androidx.room:room-runtime:$roomVersion"
-    kapt "androidx.room:room-compiler:$roomVersion"
-
+    implementation libs.roomRuntime
+    kapt libs.roomCompiler
     //view binding delegate
-    implementation 'com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.9'
-
-    //OkHttp
-    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.6'
-
+    implementation libs.viewBindingDelegate
+    //okhttp
+    implementation libs.okHttp
     //retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-
+    implementation libs.retrofit2
+    implementation libs.converterGson
     //lifecycle
-    def lifecycle_version = "2.6.1"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-
+    implementation libs.livedata
+    implementation libs.viewmodelKtx
     //fragment
-    implementation 'androidx.fragment:fragment-ktx:1.6.0'
-
+    implementation libs.fragment
     //navigation
-    def navigationVersion = "2.6.0"
-    implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
-    implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
-
+    implementation libs.navigationFragment
+    implementation libs.navigationUi
     //recyclerview
-    implementation 'androidx.recyclerview:recyclerview:1.3.0'
-    implementation 'androidx.recyclerview:recyclerview-selection:1.1.0'
-    implementation 'androidx.paging:paging-runtime:3.1.1'
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
-
+    implementation libs.recycler
+    implementation libs.recyclerSelection
+    //paging
+    implementation libs.paging
+    //swipe refresh
+    implementation libs.swipeRefresh
     //hilt
-    def hiltVersion = "2.46.1"
-    implementation "com.google.dagger:hilt-android:$hiltVersion"
-    kapt "com.google.dagger:hilt-android-compiler:$hiltVersion"
-
+    implementation libs.hiltAndroid
+    kapt libs.hiltCompiler
     //gson
-    implementation 'com.google.code.gson:gson:2.10.1'
-
+    implementation libs.gson
     //glide
-    implementation 'com.github.bumptech.glide:glide:4.15.1'
-    kapt 'com.github.bumptech.glide:compiler:4.15.1'
-
+    implementation libs.glide
+    kapt libs.glideCompiler
     //tests
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    testImplementation libs.junit
+    androidTestImplementation libs.androidxTest
+    //test UI
+    androidTestImplementation libs.espresso
 }
