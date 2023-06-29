@@ -1,7 +1,7 @@
 package com.biryulindevelop.unsplash.domain.repository
 
 import androidx.paging.PagingSource
-import com.biryulindevelop.unsplash.data.db.entity.PhotoEntity
+import com.biryulindevelop.unsplash.domain.entity.PhotoEntity
 
 interface LocalRepository {
 

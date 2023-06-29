@@ -1,9 +1,9 @@
 package com.biryulindevelop.unsplash.domain.repository
 
-import com.biryulindevelop.unsplash.data.api.dto.photo.PhotoDetailsDto
-import com.biryulindevelop.unsplash.data.api.dto.photo.PhotoListDto
-import com.biryulindevelop.unsplash.data.api.dto.photo.WrapperPhotoDto
-import com.biryulindevelop.unsplash.data.state.Requester
+import com.biryulindevelop.unsplash.domain.dto.photo.PhotoDetailsDto
+import com.biryulindevelop.unsplash.domain.dto.photo.PhotoListDto
+import com.biryulindevelop.unsplash.domain.dto.photo.WrapperPhotoDto
+import com.biryulindevelop.unsplash.domain.state.Requester
 
 interface PhotoRemoteRepository {
 

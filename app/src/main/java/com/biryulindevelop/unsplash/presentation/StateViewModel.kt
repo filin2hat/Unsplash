@@ -1,8 +1,8 @@
 package com.biryulindevelop.unsplash.presentation
 
 import androidx.lifecycle.ViewModel
-import com.biryulindevelop.unsplash.data.state.LoadState
 import com.biryulindevelop.unsplash.domain.model.Profile
+import com.biryulindevelop.unsplash.domain.state.LoadState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Job

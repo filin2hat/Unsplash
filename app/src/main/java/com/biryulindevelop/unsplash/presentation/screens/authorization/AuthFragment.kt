@@ -18,8 +18,8 @@ import com.biryulindevelop.unsplash.application.REQUEST
 import com.biryulindevelop.unsplash.application.TOKEN_ENABLED
 import com.biryulindevelop.unsplash.application.TOKEN_KEY
 import com.biryulindevelop.unsplash.application.TOKEN_NAME
-import com.biryulindevelop.unsplash.data.state.LoadState
 import com.biryulindevelop.unsplash.databinding.FragmentAuthBinding
+import com.biryulindevelop.unsplash.domain.state.LoadState
 import com.biryulindevelop.unsplash.presentation.utils.SharedPreferencesUtils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

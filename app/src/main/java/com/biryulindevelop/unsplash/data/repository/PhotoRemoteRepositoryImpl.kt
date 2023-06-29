@@ -3,11 +3,11 @@ package com.biryulindevelop.unsplash.data.repository
 import com.biryulindevelop.unsplash.data.api.ApiDigest
 import com.biryulindevelop.unsplash.data.api.ApiPhotos
 import com.biryulindevelop.unsplash.data.api.ApiProfile
-import com.biryulindevelop.unsplash.data.api.dto.photo.PhotoDetailsDto
-import com.biryulindevelop.unsplash.data.api.dto.photo.PhotoListDto
-import com.biryulindevelop.unsplash.data.api.dto.photo.WrapperPhotoDto
-import com.biryulindevelop.unsplash.data.state.Requester
+import com.biryulindevelop.unsplash.domain.dto.photo.PhotoDetailsDto
+import com.biryulindevelop.unsplash.domain.dto.photo.PhotoListDto
+import com.biryulindevelop.unsplash.domain.dto.photo.WrapperPhotoDto
 import com.biryulindevelop.unsplash.domain.repository.PhotoRemoteRepository
+import com.biryulindevelop.unsplash.domain.state.Requester
 import javax.inject.Inject
 
 class PhotoRemoteRepositoryImpl @Inject constructor(

@@ -6,8 +6,9 @@ import com.biryulindevelop.unsplash.databinding.DigestViewHolderBinding
 import com.biryulindevelop.unsplash.domain.model.Digest
 import com.biryulindevelop.unsplash.presentation.utils.imgLoader
 
-class DigestViewHolder(private val binding: DigestViewHolderBinding) :
-    RecyclerView.ViewHolder(binding.root) {
+class DigestViewHolder(
+    private val binding: DigestViewHolderBinding
+) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: Digest, onClick: (item: Digest) -> Unit) {
         binding.root.setOnClickListener {

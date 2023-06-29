@@ -18,10 +18,11 @@ import com.biryulindevelop.unsplash.R
 import com.biryulindevelop.unsplash.application.TOKEN_ENABLED
 import com.biryulindevelop.unsplash.application.TOKEN_KEY
 import com.biryulindevelop.unsplash.application.TOKEN_NAME
-import com.biryulindevelop.unsplash.data.state.ClickableView
-import com.biryulindevelop.unsplash.data.state.LoadState
 import com.biryulindevelop.unsplash.databinding.FragmentProfileBinding
 import com.biryulindevelop.unsplash.domain.model.Photo
+import com.biryulindevelop.unsplash.domain.state.ClickableView
+import com.biryulindevelop.unsplash.domain.state.LoadState
+import com.biryulindevelop.unsplash.domain.state.ProfileState
 import com.biryulindevelop.unsplash.presentation.screens.photos.list.adapter.PhotoPagingAdapter
 import com.biryulindevelop.unsplash.presentation.utils.SharedPreferencesUtils
 import com.biryulindevelop.unsplash.presentation.utils.imgLoader
@@ -30,6 +31,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
+
     private val binding by viewBinding(FragmentProfileBinding::bind)
     private val viewModel: ProfileViewModel by viewModels()
     private val adapter by lazy {

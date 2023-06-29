@@ -2,7 +2,7 @@ package com.biryulindevelop.unsplash.data.db
 
 import androidx.paging.PagingSource
 import androidx.room.*
-import com.biryulindevelop.unsplash.data.db.entity.PhotoEntity
+import com.biryulindevelop.unsplash.domain.entity.PhotoEntity
 
 @Dao
 interface PhotosDao {

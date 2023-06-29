@@ -28,7 +28,7 @@ fun SearchView.setChangeTextListener(block: (query: String) -> Unit) {
         }
     })
 
-    this.setOnSearchClickListener { this.requestFocus() }  // вызываем метод requestFocus(), когда пользователь нажимает на иконку поиска
+    this.setOnSearchClickListener { this.requestFocus() }
 }
 
 fun ImageView.imgLoader(urls: String) {

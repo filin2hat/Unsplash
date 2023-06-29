@@ -16,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
+
     private val binding by viewBinding(FragmentOnboardingBinding::bind)
     private var mediator: TabLayoutMediator? = null
 
@@ -35,6 +36,7 @@ class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
         }
 
     }
+
     private fun setTabs() {
         mediator = TabLayoutMediator(binding.tabsView, binding.viewPager) { _, _ -> }
         mediator?.attach()
@@ -42,11 +44,13 @@ class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 updateAuthorizeButtonText(tab?.position == 2) // Замените "2" на индекс последней вкладки
             }
+
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
 
             override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
     }
+
     private fun updateAuthorizeButtonText(isLastTab: Boolean) {
         binding.authorizeButton.text =
             if (isLastTab) resources.getString(R.string.onboarding_button_text_next)

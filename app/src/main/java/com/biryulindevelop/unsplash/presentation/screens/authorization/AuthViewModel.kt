@@ -2,7 +2,7 @@ package com.biryulindevelop.unsplash.presentation.screens.authorization
 
 import androidx.lifecycle.viewModelScope
 import com.biryulindevelop.unsplash.data.api.authentication.ApiToken
-import com.biryulindevelop.unsplash.data.state.LoadState
+import com.biryulindevelop.unsplash.domain.state.LoadState
 import com.biryulindevelop.unsplash.presentation.StateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -12,7 +12,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AuthViewModel @Inject constructor(private val apiToken: ApiToken) : StateViewModel() {
+class AuthViewModel @Inject constructor(
+    private val apiToken: ApiToken
+) : StateViewModel() {
 
     private val _token = MutableSharedFlow<String>()
     val token = _token.asSharedFlow()

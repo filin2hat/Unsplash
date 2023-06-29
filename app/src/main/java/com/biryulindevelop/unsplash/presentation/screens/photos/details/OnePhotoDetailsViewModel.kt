@@ -1,10 +1,11 @@
 package com.biryulindevelop.unsplash.presentation.screens.photos.details
 
 import androidx.lifecycle.viewModelScope
-import com.biryulindevelop.unsplash.data.state.LoadState
 import com.biryulindevelop.unsplash.domain.model.PhotoDetails
-import com.biryulindevelop.unsplash.domain.usecase.interfaceces.LikeDetailPhotoUseCase
-import com.biryulindevelop.unsplash.domain.usecase.interfaceces.OnePhotoDetailsUseCase
+import com.biryulindevelop.unsplash.domain.state.LoadState
+import com.biryulindevelop.unsplash.domain.state.OnePhotoDetailsState
+import com.biryulindevelop.unsplash.domain.usecase.LikeDetailPhotoUseCase
+import com.biryulindevelop.unsplash.domain.usecase.OnePhotoDetailsUseCase
 import com.biryulindevelop.unsplash.presentation.StateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

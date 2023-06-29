@@ -4,10 +4,10 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
-import com.biryulindevelop.unsplash.data.db.entity.PhotoEntity
-import com.biryulindevelop.unsplash.data.state.Requester
+import com.biryulindevelop.unsplash.domain.entity.PhotoEntity
 import com.biryulindevelop.unsplash.domain.repository.LocalRepository
 import com.biryulindevelop.unsplash.domain.repository.PhotoRemoteRepository
+import com.biryulindevelop.unsplash.domain.state.Requester
 import javax.inject.Inject
 
 @OptIn(ExperimentalPagingApi::class)

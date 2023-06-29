@@ -17,6 +17,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DigestFragment : Fragment(R.layout.fragment_digest) {
+
     private val binding by viewBinding(FragmentDigestBinding::bind)
     private val viewModel: DigestViewModel by viewModels()
     private val adapter by lazy { DigestPagingAdapter { item -> onClick(item) } }

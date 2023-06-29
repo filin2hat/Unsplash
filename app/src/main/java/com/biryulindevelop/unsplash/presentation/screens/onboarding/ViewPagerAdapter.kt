@@ -9,8 +9,10 @@ class ViewPagerAdapter(
     private val allOnboardingTexts: Array<String>,
 ) : RecyclerView.Adapter<ViewPagerAdapter.ViewPagerHolder>() {
 
-    class ViewPagerHolder(private val itemBinding: ItemViewpagerBinding) :
-        RecyclerView.ViewHolder(itemBinding.root) {
+    class ViewPagerHolder(
+        private val itemBinding: ItemViewpagerBinding
+    ) : RecyclerView.ViewHolder(itemBinding.root) {
+
         fun bind(item: String) {
             itemBinding.onboardingTextView.text = item
         }

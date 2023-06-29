@@ -28,9 +28,10 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.biryulindevelop.unsplash.R
-import com.biryulindevelop.unsplash.data.state.LoadState
 import com.biryulindevelop.unsplash.databinding.FragmentOnePhotoDetailsBinding
 import com.biryulindevelop.unsplash.domain.model.PhotoDetails
+import com.biryulindevelop.unsplash.domain.state.LoadState
+import com.biryulindevelop.unsplash.domain.state.OnePhotoDetailsState
 import com.biryulindevelop.unsplash.presentation.utils.imgLoader
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,16 +42,13 @@ import java.util.Locale
 
 @AndroidEntryPoint
 class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
-    //private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
 
     private val binding by viewBinding(FragmentOnePhotoDetailsBinding::bind)
     private val viewModel: OnePhotoDetailsViewModel by viewModels()
     private val navArgs: OnePhotoDetailsFragmentArgs by navArgs()
-
     private var lattitude: Double? = null
     private var longitude: Double? = null
-
-    private lateinit var receiver: BroadcastReceiver
+    private var receiver: BroadcastReceiver? = null
     private var isReceiverRegistered = false
 
     private val launcher = registerForActivityResult(
@@ -78,41 +76,6 @@ class OnePhotoDetailsFragment : Fragment(R.layout.fragment_one_photo_details) {
             launcher.launch(arrayOf(WRITE_EXTERNAL_STORAGE))
         }
     }
-
-//    private fun checkPermission(url: String) {
-//        when {
-//            ContextCompat.checkSelfPermission(
-//                requireContext(),
-//                WRITE_EXTERNAL_STORAGE
-//            ) == PackageManager.PERMISSION_GRANTED -> {
-//                startDownload(url)
-//            }
-//
-//            shouldShowRequestPermissionRationale(WRITE_EXTERNAL_STORAGE) -> {
-//                showPermissionRequestDialog("permission_title", "write_permission_request") {
-//                    requestPermissionLauncher.launch(WRITE_EXTERNAL_STORAGE)
-//                }
-//            }
-//
-//            else -> {
-//                requestPermissionLauncher.launch(WRITE_EXTERNAL_STORAGE)
-//            }
-//        }
-//    }
-//
-//    private fun showPermissionRequestDialog(
-//        title: String,
-//        body: String,
-//        callback: () -> Unit
-//    ) {
-//        AlertDialog.Builder(requireContext()).also {
-//            it.setTitle(title)
-//            it.setMessage(body)
-//            it.setPositiveButton("Ok") { _, _ ->
-//                callback()
-//            }
-//        }.create().show()
-//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

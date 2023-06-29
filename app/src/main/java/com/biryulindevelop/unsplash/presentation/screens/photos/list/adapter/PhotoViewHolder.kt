@@ -1,9 +1,9 @@
 package com.biryulindevelop.unsplash.presentation.screens.photos.list.adapter
 
 import androidx.recyclerview.widget.RecyclerView
-import com.biryulindevelop.unsplash.data.state.ClickableView
 import com.biryulindevelop.unsplash.databinding.PhotoViewHolderBinding
 import com.biryulindevelop.unsplash.domain.model.Photo
+import com.biryulindevelop.unsplash.domain.state.ClickableView
 import com.biryulindevelop.unsplash.presentation.utils.imgLoader
 
 class PhotoViewHolder(private val binding: PhotoViewHolderBinding) :

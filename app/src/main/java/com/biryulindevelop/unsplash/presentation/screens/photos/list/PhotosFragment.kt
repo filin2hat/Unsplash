@@ -11,17 +11,17 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.biryulindevelop.unsplash.R
-import com.biryulindevelop.unsplash.data.state.ClickableView
-import com.biryulindevelop.unsplash.data.state.LoadState
 import com.biryulindevelop.unsplash.databinding.FragmentPhotosBinding
 import com.biryulindevelop.unsplash.domain.model.Photo
+import com.biryulindevelop.unsplash.domain.state.ClickableView
+import com.biryulindevelop.unsplash.domain.state.LoadState
 import com.biryulindevelop.unsplash.presentation.screens.photos.list.adapter.PhotoPagingAdapter
-import com.biryulindevelop.unsplash.presentation.utils.setChangeTextListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class PhotosFragment : Fragment(R.layout.fragment_photos) {
+
     private val binding by viewBinding(FragmentPhotosBinding::bind)
     private val viewModel: PhotosViewModel by viewModels()
     private val adapter by lazy {
@@ -59,16 +59,14 @@ class PhotosFragment : Fragment(R.layout.fragment_photos) {
 
     private fun setSearchView() {
         val searchView = binding.searchBarView.menu.getItem(0).actionView as SearchView
-        searchView.imeOptions = EditorInfo.IME_ACTION_DONE // Установка опции ввода/отправки запроса
+        searchView.imeOptions = EditorInfo.IME_ACTION_DONE
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                // Выполнение действия при нажатии на кнопку "Готово"
                 viewModel.setQuery(query) { adapter.refresh() }
                 return true
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                // Обработка изменений текста поискового запроса
                 return false
             }
         })

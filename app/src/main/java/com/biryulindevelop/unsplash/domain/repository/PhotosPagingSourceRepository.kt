@@ -1,10 +1,10 @@
 package com.biryulindevelop.unsplash.domain.repository
 
 import androidx.paging.PagingData
-import com.biryulindevelop.unsplash.data.api.dto.photo.WrapperPhotoDto
-import com.biryulindevelop.unsplash.data.db.entity.PhotoEntity
-import com.biryulindevelop.unsplash.data.state.Requester
+import com.biryulindevelop.unsplash.domain.dto.photo.WrapperPhotoDto
+import com.biryulindevelop.unsplash.domain.entity.PhotoEntity
 import com.biryulindevelop.unsplash.domain.model.Photo
+import com.biryulindevelop.unsplash.domain.state.Requester
 import kotlinx.coroutines.flow.Flow
 
 interface PhotosPagingSourceRepository {

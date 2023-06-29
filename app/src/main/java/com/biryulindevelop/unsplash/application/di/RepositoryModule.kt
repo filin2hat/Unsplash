@@ -49,4 +49,5 @@ abstract class RepositoryModule {
     abstract fun bindPhotosPagingSourceRepository(
         photosPagingSourceRepository: PhotosPagingSourceRepositoryImpl
     ): PhotosPagingSourceRepository
+
 }

@@ -1,7 +1,8 @@
 package com.biryulindevelop.unsplash.data.api
 
-import com.biryulindevelop.unsplash.data.api.dto.digest.DigestListDto
-import com.biryulindevelop.unsplash.data.api.dto.photo.PhotoListDto
+import com.biryulindevelop.unsplash.domain.dto.digest.DigestDto
+import com.biryulindevelop.unsplash.domain.dto.digest.DigestListDto
+import com.biryulindevelop.unsplash.domain.dto.photo.PhotoListDto
 import retrofit2.http.*
 
 interface ApiDigest {
@@ -18,5 +19,5 @@ interface ApiDigest {
     @GET("collections/{id}")
     suspend fun getDigestInfo(
         @Path("id") id: String
-    ): com.biryulindevelop.unsplash.data.api.dto.digest.DigestDto
+    ): DigestDto
 }

@@ -2,7 +2,7 @@ package com.biryulindevelop.unsplash.data.repository
 
 import androidx.paging.PagingSource
 import com.biryulindevelop.unsplash.data.db.PhotosDao
-import com.biryulindevelop.unsplash.data.db.entity.PhotoEntity
+import com.biryulindevelop.unsplash.domain.entity.PhotoEntity
 import com.biryulindevelop.unsplash.domain.repository.LocalRepository
 import javax.inject.Inject
 

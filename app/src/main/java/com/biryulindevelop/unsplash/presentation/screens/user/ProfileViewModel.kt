@@ -2,12 +2,13 @@ package com.biryulindevelop.unsplash.presentation.screens.user
 
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
-import com.biryulindevelop.unsplash.data.state.LoadState
-import com.biryulindevelop.unsplash.data.state.Requester
 import com.biryulindevelop.unsplash.domain.model.Photo
-import com.biryulindevelop.unsplash.domain.usecase.interfaceces.GetProfileUseCase
-import com.biryulindevelop.unsplash.domain.usecase.interfaceces.PhotoLikeUseCase
-import com.biryulindevelop.unsplash.domain.usecase.interfaceces.PhotosPagingUseCase
+import com.biryulindevelop.unsplash.domain.state.LoadState
+import com.biryulindevelop.unsplash.domain.state.ProfileState
+import com.biryulindevelop.unsplash.domain.state.Requester
+import com.biryulindevelop.unsplash.domain.usecase.GetProfileUseCase
+import com.biryulindevelop.unsplash.domain.usecase.PhotoLikeUseCase
+import com.biryulindevelop.unsplash.domain.usecase.PhotosPagingUseCase
 import com.biryulindevelop.unsplash.presentation.StateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
