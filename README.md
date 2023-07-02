@@ -80,6 +80,6 @@ Unsplasher - это мобильное приложение, которое по
 - зарегистрировать аккаунт на Unsplash
 - на сайте, в консоли разработчика создать приложение, с указанем всех доступных скоупов
   (https://unsplash.com/oauth/applications)
-- полученые ключи прописать в ApphConst.kt:
-- const val ACCESS_KEY = "Access Key"
-- const val SECRET_KEY = "Secret key"
+- полученые ключи прописать в AppConst.kt:
+  const val ACCESS_KEY = "Access Key"
+  const val SECRET_KEY = "Secret key"

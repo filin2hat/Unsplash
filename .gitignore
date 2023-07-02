@@ -99,3 +99,4 @@ lint/tmp/
 build
 app/build
 app/proguard-rules.pro
+/.fastRequest/config/fastRequestCurrentProjectConfig.json
