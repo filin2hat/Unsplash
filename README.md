@@ -6,7 +6,7 @@
 
 Unsplasher is a mobile application that allows users to browse and search for high-quality,
 royalty-free images from the Unsplash API. The app provides a seamless and intuitive user interface
-for discovering and downloading stunning photographs for personal or commercial use.
+for discovering, searching and downloading stunning photographs for personal or commercial use.
 
 ## Technologies Used:
 
@@ -35,9 +35,9 @@ for discovering and downloading stunning photographs for personal or commercial 
 - register an account on Unsplash
 - on the site, in the developer console, create an application, indicating all available scopes
   (https://unsplash.com/oauth/applications)
-- register the received keys in ApphConst.kt:
-  const val ACCESS_KEY = "Access Key"
-  const val SECRET_KEY = "Secret key"
+- register the received keys in local.properties:
+- ACCESS_KEY = Access Key
+- SECRET_KEY = Secret key
 
 
 
@@ -47,7 +47,7 @@ for discovering and downloading stunning photographs for personal or commercial 
 
 Unsplasher - это мобильное приложение, которое позволяет пользователям просматривать и искать
 высококачественные бесплатные изображения из API Unsplash. Приложение предоставляет интуитивно
-понятный интерфейс для обнаружения и загрузки потрясающих фотографий для личного или коммерческого
+понятный интерфейс для просмора, поиска  и загрузки потрясающих фотографий для личного или коммерческого
 использования.
 
 ## Technologies Used:
@@ -80,6 +80,6 @@ Unsplasher - это мобильное приложение, которое по
 - зарегистрировать аккаунт на Unsplash
 - на сайте, в консоли разработчика создать приложение, с указанем всех доступных скоупов
   (https://unsplash.com/oauth/applications)
-- полученые ключи прописать в AppConst.kt:
-  const val ACCESS_KEY = "Access Key"
-  const val SECRET_KEY = "Secret key"
+- полученые ключи прописать в local.properties:
+- ACCESS_KEY = Access Key
+- SECRET_KEY = Secret key

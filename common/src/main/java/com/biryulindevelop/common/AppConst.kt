@@ -2,8 +2,8 @@ package com.biryulindevelop.common
 
 const val REDIRECT_URI = "urn:ietf:wg:oauth:2.0:oob"
 
-const val ACCESS_KEY = "zIF0uoAy_pcdB5jZyTIBzh5SdfkFGslhzXAgUM3xxd8"
-const val SECRET_KEY = "3T59pONdkckll9PpY3morKd3rbnjhcTEJh4QBbT8uAM"
+const val ACCESS_KEY = BuildConfig.ACCESS_KEY
+const val SECRET_KEY = BuildConfig.SECRET_KEY
 
 const val TOKEN_NAME = "name_token"
 const val TOKEN_KEY = "key_token"
