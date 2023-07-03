@@ -58,6 +58,7 @@ android {
 
 apply from: rootProject.file('dependencies.gradle')
 
+
 dependencies {
     //modules
     implementation project(':data')
@@ -106,9 +107,33 @@ dependencies {
     //glide
     implementation libs.glide
     kapt libs.glideCompiler
+
     //tests
     testImplementation libs.junit
     androidTestImplementation libs.androidxTest
-    //test UI
+    implementation libs.junitKtx
+    androidTestImplementation libs.testCore
+    testImplementation libs.coreTesting
+
+    //espresso
     androidTestImplementation libs.espresso
+    androidTestImplementation libs.testRunner
+    androidTestImplementation libs.testRules
+    androidTestImplementation libs.espressoContrib
+    androidTestImplementation libs.espressoContrib
+
+    //coroutinesTest
+    testImplementation libs.coroutinesTest
+
+    //mockito
+    testImplementation libs.mockito
+    androidTestImplementation libs.mockitoAndroid
+
+    //mokK
+    testImplementation libs.mokk
+    androidTestImplementation libs.mokkAndroid
+
+    //hamcrest
+    androidTestImplementation libs.hamcrest
+    androidTestImplementation libs.hamcrestLib
 }

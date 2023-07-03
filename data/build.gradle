@@ -44,6 +44,17 @@ dependencies {
     //tests
     testImplementation libs.junit
     androidTestImplementation libs.androidxTest
+    implementation libs.junitKtx
+    androidTestImplementation libs.testCore
+    testImplementation libs.coreTesting
+    //coroutinesTest
+    testImplementation libs.coroutinesTest
+    //mokK
+    testImplementation libs.mokk
+    androidTestImplementation libs.mokkAndroid
+    //mockito
+    testImplementation libs.mockito
+    androidTestImplementation libs.mockitoAndroid
     //OkHttp
     implementation libs.okHttp
     //room
@@ -59,4 +70,8 @@ dependencies {
     kapt libs.hiltCompiler
     //gson
     implementation libs.gson
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.3'
+
 }

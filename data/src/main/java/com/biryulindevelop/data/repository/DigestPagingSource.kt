@@ -31,6 +31,6 @@ class DigestPagingSource @Inject constructor(
     }
 
     companion object {
-        private const val FIRST_PAGE = 1
+        const val FIRST_PAGE = 1
     }
 }
