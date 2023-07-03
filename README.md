@@ -1,7 +1,5 @@
 # Unsplasher
 
-#### English:
-
 ## General Project Description:
 Unsplasher is a mobile application that allows users to browse and search for high-quality,
 royalty-free images from the Unsplash API. The app provides a seamless and intuitive user interface
@@ -36,9 +34,7 @@ for discovering, searching and downloading stunning photographs for personal or 
 - ACCESS_KEY = Access Key
 - SECRET_KEY = Secret key
 
-
-
-#### Русский:
+### Russian / Русский:
 
 ## Общее описание проекта:
 Unsplasher - это мобильное приложение, которое позволяет пользователям просматривать и искать
@@ -76,6 +72,10 @@ Unsplasher - это мобильное приложение, которое по
 - полученые ключи прописать в local.properties:
 - ACCESS_KEY = Access Key
 - SECRET_KEY = Secret key
+
+## My contacts:
+- E-mail: [filin2hat@yandex.ru]
+- Telegram: [@filin2hat]
 
 ## Demonstration
 #### Onboarding and login screens:
