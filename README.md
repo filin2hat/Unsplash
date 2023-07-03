@@ -83,3 +83,16 @@ Unsplasher - это мобильное приложение, которое по
 - полученые ключи прописать в local.properties:
 - ACCESS_KEY = Access Key
 - SECRET_KEY = Secret key
+
+##Demo
+### Onboarding and login screens:
+![onboarding_login](https://github.com/filin2hat/Unsplasher/assets/94535311/16857c15-4466-4374-8aaa-173224bbdd5a)
+
+### Photos screen and searching images:
+![photos_and_search](https://github.com/filin2hat/Unsplasher/assets/94535311/192c2d2d-8621-4f03-a7f7-7cdd5204c5f9)
+
+### Collection screens. Like. Share link:
+![collection_like_share](https://github.com/filin2hat/Unsplasher/assets/94535311/a088d8e8-fda6-4a5e-b6e7-226f5485720a)
+
+### Profile screen. Exit profile:
+
