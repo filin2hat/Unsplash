@@ -74,8 +74,8 @@ Unsplasher - это мобильное приложение, которое по
 - SECRET_KEY = Secret key
 
 ## My contacts:
-- E-mail: [filin2hat@yandex.ru]
-- Telegram: [@filin2hat]
+- E-mail: filin2hat@yandex.ru
+- Telegram: @filin2hat
 
 ## Demonstration
 #### Onboarding and login screens:
