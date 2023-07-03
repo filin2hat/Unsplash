@@ -3,13 +3,11 @@
 #### English:
 
 ## General Project Description:
-
 Unsplasher is a mobile application that allows users to browse and search for high-quality,
 royalty-free images from the Unsplash API. The app provides a seamless and intuitive user interface
 for discovering, searching and downloading stunning photographs for personal or commercial use.
 
 ## Technologies Used:
-
 - MVVM Architecture: The project follows the Model-View-ViewModel architectural pattern, which
   promotes separation of concerns and maintainability.
 - Clean Architecture: The app is designed using the principles of Clean Architecture, ensuring a
@@ -28,7 +26,6 @@ for discovering, searching and downloading stunning photographs for personal or 
   reliability and quality of the app.
 
 ### Important:
-
 #### Downloaded - press 🌟
 #### For the application to work, you must:
 
@@ -44,14 +41,12 @@ for discovering, searching and downloading stunning photographs for personal or 
 #### Русский:
 
 ## Общее описание проекта:
-
 Unsplasher - это мобильное приложение, которое позволяет пользователям просматривать и искать
 высококачественные бесплатные изображения из API Unsplash. Приложение предоставляет интуитивно
 понятный интерфейс для просмора, поиска  и загрузки потрясающих фотографий для личного или коммерческого
 использования.
 
 ## Technologies Used:
-
 - Архитектура MVVM: Проект следует архитектурному шаблону Model-View-ViewModel, который
   способствует разделению ответственности и обеспечивает легкость поддержки кода.
 - Чистая архитектура: Приложение разработано с использованием принципов чистой архитектуры,
@@ -72,11 +67,9 @@ Unsplasher - это мобильное приложение, которое по
   обеспечивая надежность и качество приложения.
 
 ### Важно:
-
 #### Скачал - поставь 🌟
 
 #### Для работы приложения необходимо:
-
 - зарегистрировать аккаунт на Unsplash
 - на сайте, в консоли разработчика создать приложение, с указанем всех доступных скоупов
   (https://unsplash.com/oauth/applications)
@@ -84,15 +77,21 @@ Unsplasher - это мобильное приложение, которое по
 - ACCESS_KEY = Access Key
 - SECRET_KEY = Secret key
 
-##Demo
-### Onboarding and login screens:
+## Demonstration
+#### Onboarding and login screens:
 ![onboarding_login](https://github.com/filin2hat/Unsplasher/assets/94535311/16857c15-4466-4374-8aaa-173224bbdd5a)
 
-### Photos screen and searching images:
+#### Photos screen and searching images:
 ![photos_and_search](https://github.com/filin2hat/Unsplasher/assets/94535311/192c2d2d-8621-4f03-a7f7-7cdd5204c5f9)
 
-### Collection screens. Like. Share link:
+#### Collection screens. Like. Share link:
 ![collection_like_share](https://github.com/filin2hat/Unsplasher/assets/94535311/a088d8e8-fda6-4a5e-b6e7-226f5485720a)
 
-### Profile screen. Exit profile:
+#### Profile screen. Exit profile:
+![profile_exit](https://github.com/filin2hat/Unsplasher/assets/94535311/29735926-f2e4-4ea2-a2e2-a670d6009248)
 
+#### Location on map:
+![to_map](https://github.com/filin2hat/Unsplasher/assets/94535311/4eba84fe-1bf0-4a2e-9cd3-ed756c43fe8f)
+
+#### No network connection
+![network_err](https://github.com/filin2hat/Unsplasher/assets/94535311/2b7ed8ff-8247-418b-b5b5-73c7b6a094d0)
