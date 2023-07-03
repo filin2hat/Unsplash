@@ -40,7 +40,7 @@ class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
         mediator?.attach()
         binding.tabsView.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                updateAuthorizeButtonText(tab?.position == 2) // Замените "2" на индекс последней вкладки
+                updateAuthorizeButtonText(tab?.position == 2)
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {}

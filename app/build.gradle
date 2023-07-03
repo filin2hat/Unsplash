@@ -115,6 +115,9 @@ dependencies {
     androidTestImplementation libs.testCore
     testImplementation libs.coreTesting
 
+    //fragment tests
+    androidTestImplementation 'androidx.fragment:fragment-testing:1.6.0'
+
     //espresso
     androidTestImplementation libs.espresso
     androidTestImplementation libs.testRunner
