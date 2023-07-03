@@ -1,4 +1,4 @@
-package com.biryulindevelop.unsplash.application.di
+package com.biryulindevelop.unsplash.di
 
 import android.content.Context
 import androidx.room.Room

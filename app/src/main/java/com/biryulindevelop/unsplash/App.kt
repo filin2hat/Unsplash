@@ -1,4 +1,4 @@
-package com.biryulindevelop.unsplash.application
+package com.biryulindevelop.unsplash
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
