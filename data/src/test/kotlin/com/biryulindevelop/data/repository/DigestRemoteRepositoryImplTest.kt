@@ -20,13 +20,9 @@ class DigestRemoteRepositoryImplTest {
         this.digestRemoteRepository = DigestRemoteRepositoryImpl(this.apiDigest)
     }
 
-
-    /**Should return a list of digests when a valid page number is provided*/
     @Test
     fun getDigestsWhenPageNumberIsValid() {
     }
-
-    /**Should throw an exception when an invalid page number is provided*/
     @Test
     fun getDigestsWhenPageNumberIsInvalidThenThrowException() {
     }

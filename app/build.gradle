@@ -67,43 +67,58 @@ dependencies {
 
     //kotlin
     implementation libs.coreKtx
+
     //android ui
     implementation libs.appCompat
     implementation libs.material
     implementation libs.constraintLayout
     implementation libs.legasySupport
+
     //annotation
     implementation libs.annotation
+
     //room
     implementation libs.roomRuntime
     kapt libs.roomCompiler
+
     //view binding delegate
     implementation libs.viewBindingDelegate
+
     //okhttp
     implementation libs.okHttp
+
     //retrofit
     implementation libs.retrofit2
     implementation libs.converterGson
+
     //lifecycle
     implementation libs.livedata
     implementation libs.viewmodelKtx
+
     //fragment
     implementation libs.fragment
+
     //navigation
     implementation libs.navigationFragment
     implementation libs.navigationUi
+
     //recyclerview
     implementation libs.recycler
     implementation libs.recyclerSelection
+
     //paging
     implementation libs.paging
+
     //swipe refresh
     implementation libs.swipeRefresh
+
     //hilt
     implementation libs.hiltAndroid
     kapt libs.hiltCompiler
+
     //gson
     implementation libs.gson
+
     //glide
     implementation libs.glide
     kapt libs.glideCompiler
