@@ -131,7 +131,7 @@ dependencies {
     testImplementation libs.coreTesting
 
     //fragment tests
-    androidTestImplementation 'androidx.fragment:fragment-testing:1.6.0'
+    androidTestImplementation libs.fragmentTest
 
     //espresso
     androidTestImplementation libs.espresso
@@ -150,8 +150,4 @@ dependencies {
     //mokK
     testImplementation libs.mokk
     androidTestImplementation libs.mokkAndroid
-
-    //hamcrest
-    androidTestImplementation libs.hamcrest
-    androidTestImplementation libs.hamcrestLib
 }
